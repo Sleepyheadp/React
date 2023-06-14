@@ -57,18 +57,22 @@ function App() {
 				<button>发布</button>
 			</div>
 			<div>
-				{microBlogs.map((microBlog) => (
+
+				{/* 1、三元表达式：替代if-else （当然这里的map可以进行判断是否有值，我们只是为了演示三元表达式的实现效果） */}
+				{microBlogs.length>0 ? microBlogs.map((microBlog) => (
 					<div key={microBlog.id}>
-						<img src={microBlog.author.avatar} alt=""/>
+						{/* 2、||或运算符 设置默认值*/}
+						<img src={microBlog.author.avatar || 'www.demo.com/avatar.jpg'} alt=""/>
 						<div>
-							<p>{microBlog.content}</p>
+							{/*3、&&与运算符：替代if语句*/}
+							<p>{microBlog.content.length > 0 && microBlog.content }</p>
 							<div>
 								<p>{microBlog.author.name}</p>
 								<p>{microBlog.publishDate}</p>
 							</div>
 						</div>
 					</div>
-				))}
+				)):(<div>暂无数据</div>)}
 			</div>
 		</main>
 	);

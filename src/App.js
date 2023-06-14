@@ -103,8 +103,8 @@ function App() {
 				{/* 1、三元表达式：替代if-else （当然这里的map可以进行判断是否有值，我们只是为了演示三元表达式的实现效果） */}
 				{microBlogs.length>0 ? microBlogs.map((microBlog) => (
 					// reacr会自动给帮我们接受并使用key值
-					<PostListItem microBlog={microBlog} code='0-9-2战犯出列' key={microBlog.id} >
-						<EditAndDelete />
+					<PostListItem microBlog={microBlog} name='capoo' age={1} key={microBlog.id} >
+						<EditAndDelete onEdit={()=>console.log(microBlog.id)}/>
 					</PostListItem>
 				)):(<div>暂无数据</div>)}
 			</div>
@@ -112,10 +112,20 @@ function App() {
 	);
 }
 
-function EditAndDelete(){
+function EditAndDelete({onEdit}){
+	// 子组件自身的方法及逻辑，在里面调用父组件传递过来的方法
+	function handleEdit(e){
+		e.preventDefault()
+		e.stopPropagation() // 父元素有方法执行(点击打印id
+		console.log('阻止了a标签的默认跳转...')
+		// 先判断是否传递了onEdit方法，如果传递了就执行。不判断直接执行会报错
+		if(onEdit){
+			onEdit();
+		}
+	}
 	return (
 		<div>
-			<span>编辑</span> <span>删除</span>
+			<a onClick={handleEdit} href='https://www.baidu.com'>编辑</a> <a href='https://www.google.com'>删除</a>
 		</div>
 	)
 }

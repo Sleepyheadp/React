@@ -104,7 +104,7 @@ function App() {
 				{microBlogs.length>0 ? microBlogs.map((microBlog) => (
 					// reacr会自动给帮我们接受并使用key值
 					<PostListItem microBlog={microBlog} name='capoo' age={1} key={microBlog.id} >
-						<EditAndDelete onEdit={()=>console.log(microBlog.id)}/>
+						<EditAndDelete onEdit={(action,e)=>console.log(microBlog.id,action,e.target)}/>
 					</PostListItem>
 				)):(<div>暂无数据</div>)}
 			</div>
@@ -120,7 +120,7 @@ function EditAndDelete({onEdit}){
 		console.log('阻止了a标签的默认跳转...')
 		// 先判断是否传递了onEdit方法，如果传递了就执行。不判断直接执行会报错
 		if(onEdit){
-			onEdit();
+			onEdit('用户点击了a标签「传给father的值」',e);
 		}
 	}
 	return (

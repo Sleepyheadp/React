@@ -1,8 +1,8 @@
 import './inedx.css'
-
-function PostListItem({microBlog,code}){
+// 给props设置默认值，防止报错
+function PostListItem({microBlog = {id:'',author:{},content:''},code}){
   console.log('code：',code)
-  function handleWeiboClick(id,) {
+  function handleWeiboClick(id) {
     // 返回一个函数
     return (e) => {
       console.log(id);
@@ -13,7 +13,6 @@ function PostListItem({microBlog,code}){
     // onclick这种函数事件监听必须要传递一个函数，不能是函数调用的形式
     <div
       className="post"
-
       onClick={handleWeiboClick(microBlog.id)}
     >
       {/* 2、||或运算符 设置默认值*/}

@@ -71,11 +71,27 @@ function App() {
 		color: "#000",
 		fontSize: "32px",
 	}
-	// useState 示例代码
+	// 更新组件状态
 	const [count,setCount] = useState(0)
 	function increaseCount(){
 		setCount(count + 1)
 	}
+	// 更新数组状态
+	const [list,setList] = useState([1,2,3])
+	// 增加list数组元素
+	function handleAdd(){
+		setList([...list,list.length+1])
+	}
+	// 给list每一项添加增删方法
+	function handlePlusTen(index){
+		const newList = [...list];
+		newList[index] += 10;
+		setList(newList);
+	}
+	function handleDelete(item){
+		setList(list.filter((v)=>v !== item))
+	}
+
 	return (
 		<main
 			className="container"
@@ -107,17 +123,31 @@ function App() {
 			<div className='postList'>
 				{/* 1、三元表达式：替代if-else （当然这里的map可以进行判断是否有值，我们只是为了演示三元表达式的实现效果） */}
 				{microBlogs.length>0 ? microBlogs.map((microBlog) => (
-						// reacr会自动给帮我们接受并使用key值
+						// react会自动给帮我们接受并使用key值
 						<PostListItem microBlog={microBlog} key={microBlog.id} >
 							<EditAndDelete onEdit={(action,e)=>console.log(microBlog.id,action,e.target)}/>
 						</PostListItem>
 					)):(<div>暂无数据</div>)}
 			</div>
-			{/*	useState 示例代码*/}
+			{/*	更新组件状态*/}
 			<div>
 				<div className="num">{count}</div>
 				<button onClick={increaseCount}>增加</button>
 			</div>
+			{/* 更新数组状态 */}
+			<div>
+				<ul>
+					{list.map((item, index) => (
+						<li key={index}>
+							{item}
+							<button onClick={() => handlePlusTen(index)}>+10</button>
+							<button onClick={()=>handleDelete(item)}>删除此项</button>
+						</li>
+					))}
+				</ul>
+				<button onClick={handleAdd}>增加</button>
+			</div>
+
 		</main>
 	);
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+// 全局的css样式
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

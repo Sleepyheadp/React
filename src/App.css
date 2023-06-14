@@ -1,38 +1,43 @@
-.App {
-  text-align: center;
+.container {
+  width: 400px;
+  margin: 0 auto;
+  padding-top: 24px;
+  display: grid;
+  row-gap: 24px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.publishBlog {
+  display: grid;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.publishBlog textarea {
+  border: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.publishBlog button {
+  justify-self: end;
+}
+
+.post {
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 24px;
+  
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  column-gap: 20px;
+}
+
+.postMeta {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  margin-top: 16px;
+  margin-bottom: 24px;
 }
 
-.App-link {
-  color: #61dafb;
+.postAuthor {
+  font-weight: 600;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.postDate {
+  color: #666666;
 }

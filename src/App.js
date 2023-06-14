@@ -1,3 +1,8 @@
+/*
+* 1、首先定义样式的文件
+* 2、引入样式文件
+* 3、使用样式（className对应文件中的className
+* */
 import "./App.css";
 
 function App() {

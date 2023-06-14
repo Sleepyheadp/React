@@ -7,14 +7,27 @@ function App() {
 		return "欢迎使用本应用（函数） 🍂";
 	}
 
+	// 处理事件(普通函数书写方式
+	function handleContentInput(e) {
+		console.log(e.target.value);
+	}
+	// 处理事件(箭头函数书写方式
+	// const handleContentInput = (e)=> console.log(e.target.value);
+	// 事件传参
+	function handleWeiboClick(id,) {
+		// 返回一个函数
+		return (e) => {
+			console.log(id);
+			console.log(e.target);
+		};
+	}
+
 	const falseValue1 = false;
 	const falseValue2 = null;
 	const falseValue3 = undefined;
 	const falseValue4= "";
 	const falseValue5 = 0;
 	const falseValue6 = NaN;
-
-
 
 	const microBlogs = [
 		{
@@ -69,14 +82,22 @@ function App() {
 				{getTitle()}
 			</h1>
 			<div>
-				<textarea placeholder="写点什么吧..." cols="30" rows="5"></textarea>
+				<textarea
+					onInput={handleContentInput}
+					placeholder="写点什么吧..."
+					cols="30"
+					rows="5"
+				></textarea>
 				<button>发布</button>
 			</div>
 			<div>
-
 				{/* 1、三元表达式：替代if-else （当然这里的map可以进行判断是否有值，我们只是为了演示三元表达式的实现效果） */}
 				{microBlogs.length>0 ? microBlogs.map((microBlog) => (
-					<div key={microBlog.id}>
+					// onclick这种函数事件监听必须要传递一个函数，不能是函数调用的形式
+					<div
+						key={microBlog.id}
+						onClick={handleWeiboClick(microBlog.id)}
+					>
 						{/* 2、||或运算符 设置默认值*/}
 						<img src={microBlog.author.avatar || 'www.demo.com/avatar.jpg'} alt=""/>
 						<div>

@@ -4,7 +4,10 @@
 * 3、使用样式（className对应文件中的className
 * */
 import "./App.css";
-
+// 导入图片
+import UserAvatar1  from './assets/images/user1.png';
+import UserAvatar2  from './assets/images/user2.png';
+import UserAvatar3  from './assets/images/user3.png';
 function App() {
 	const title = "欢迎使用本应用 🍂";
 
@@ -39,7 +42,7 @@ function App() {
 			id: 1,
 			author: {
 				name: "张小丰",
-				avatar: '',
+				avatar: UserAvatar1,
 			},
 			content:
 				"这是一条微博信息，今天的天气真不错啊，出去玩啊？你们觉得怎么样？要不下午4 点出去？",
@@ -49,7 +52,7 @@ function App() {
 			id: 2,
 			author: {
 				name: "王小玲",
-				avatar: '',
+				avatar: UserAvatar2,
 			},
 			content:
 				"这是一条微博信息，今天的天气真不错啊，出去玩啊？你们觉得怎么样？要不下午4 点出去？",
@@ -59,7 +62,7 @@ function App() {
 			id: 3,
 			author: {
 				name: "李小明",
-				avatar: '',
+				avatar: UserAvatar3,
 			},
 			content:
 				"这是一条微博信息，今天的天气真不错啊，出去玩啊？你们觉得怎么样？要不下午4 点出去？",

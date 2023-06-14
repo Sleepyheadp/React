@@ -78,11 +78,9 @@ function App() {
 	}
 	// 更新数组状态
 	const [list,setList] = useState([1,2,3])
-	// 增加list数组元素
 	function handleAdd(){
 		setList([...list,list.length+1])
 	}
-	// 给list每一项添加增删方法
 	function handlePlusTen(index){
 		const newList = [...list];
 		newList[index] += 10;
@@ -90,6 +88,42 @@ function App() {
 	}
 	function handleDelete(item){
 		setList(list.filter((v)=>v !== item))
+	}
+	// 更新对象状态
+	const [person,setPerson] = useState({
+		name:'capoo',
+		age:25,
+		hobby:'coding',
+		// nest:{
+		// 	a:1
+		// }
+	})
+	function handleAddObj() {
+		setPerson({
+			...person,
+			gender: "男",
+		});
+	}
+	function handleChangeAge() {
+		setPerson({
+			...person,
+			age: 30,
+			// 注意对象嵌套的时候要解构到深一层
+			// nest:{
+			// 	...person.nest,
+			// 	a:2
+			// }
+		});
+	}
+	function handleRemoveAge() {
+		// 第一种写法
+		// const newPerson = {...person};
+		// delete newPerson.age;
+		// setPerson(newPerson);
+		// 第二种写法
+		// 从person中解构出age属性，其余属性放到newPerson中
+		const { age, ...newPerson } = person;
+		setPerson(newPerson);
 	}
 
 	return (
@@ -147,7 +181,19 @@ function App() {
 				</ul>
 				<button onClick={handleAdd}>增加</button>
 			</div>
-
+			{/*更新对象状态*/}
+			<div>
+				<ul>
+					{Object.keys(person).map((key, index) => (
+						<li key={index}>
+							{key}: {person[key]}
+						</li>
+					))}
+				</ul>
+				<button onClick={handleAddObj}>添加性别</button>
+				<button onClick={handleChangeAge}>修改年龄</button>
+				<button onClick={handleRemoveAge}>删除年龄</button>
+			</div>
 		</main>
 	);
 }

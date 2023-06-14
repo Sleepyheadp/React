@@ -7,6 +7,15 @@ function App() {
 		return "欢迎使用本应用（函数） 🍂";
 	}
 
+	const falseValue1 = false;
+	const falseValue2 = null;
+	const falseValue3 = undefined;
+	const falseValue4= "";
+	const falseValue5 = 0;
+	const falseValue6 = NaN;
+
+
+
 	const microBlogs = [
 		{
 			id: 1,
@@ -48,6 +57,13 @@ function App() {
 					fontSize: "32px",
 				}}
 			>
+				{/*只有0和NaN能正常渲染出来*/}
+				「{falseValue1}」、
+				「{falseValue2}」、
+				「{falseValue3}」、
+				「{falseValue4}」、
+				「{falseValue5}」、
+				「{falseValue6}」、
 				hello React!
 				{title}
 				{getTitle()}

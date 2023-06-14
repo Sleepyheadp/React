@@ -67,13 +67,19 @@ function App() {
 		},
 	];
 
+	// 内联样式(1、定义一个样式对象，2、在元素中使用style属性
+	const hStyle = {
+		color: "#000",
+		fontSize: "32px",
+	}
+
 	return (
-		<main className="container">
+		<main
+			className="container"
+			style={{backgroundColor:'#ccc'}}
+		>
 			<h1
-				style={{
-					color: "pink",
-					fontSize: "32px",
-				}}
+				style={hStyle}
 			>
 				{/*只有0和NaN能正常渲染出来*/}
 				「{falseValue1}」、

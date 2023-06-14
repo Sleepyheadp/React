@@ -1,6 +1,6 @@
 import './inedx.css'
 // 给props设置默认值，防止报错
-function PostListItem({microBlog = {id:'',author:{},content:''},code}){
+function PostListItem({microBlog = {id:'',author:{},content:''},code,children}){
   console.log('code：',code)
   function handleWeiboClick(id) {
     // 返回一个函数
@@ -25,6 +25,7 @@ function PostListItem({microBlog = {id:'',author:{},content:''},code}){
           <p className="postDate">{microBlog.publishDate}</p>
         </div>
       </div>
+      <div>{children}</div>
     </div>
   )
 }

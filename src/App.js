@@ -103,11 +103,20 @@ function App() {
 				{/* 1、三元表达式：替代if-else （当然这里的map可以进行判断是否有值，我们只是为了演示三元表达式的实现效果） */}
 				{microBlogs.length>0 ? microBlogs.map((microBlog) => (
 					// reacr会自动给帮我们接受并使用key值
-					<PostListItem microBlog={microBlog} code='0-9-2战犯出列' key={microBlog.id} />
+					<PostListItem microBlog={microBlog} code='0-9-2战犯出列' key={microBlog.id} >
+						<EditAndDelete />
+					</PostListItem>
 				)):(<div>暂无数据</div>)}
 			</div>
 		</main>
 	);
 }
 
+function EditAndDelete(){
+	return (
+		<div>
+			<span>编辑</span> <span>删除</span>
+		</div>
+	)
+}
 export default App;

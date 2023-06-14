@@ -8,6 +8,7 @@ import "./App.css";
 import UserAvatar1  from './assets/images/user1.png';
 import UserAvatar2  from './assets/images/user2.png';
 import UserAvatar3  from './assets/images/user3.png';
+import PostListItem from "./components/PostListItem";
 function App() {
 	const title = "欢迎使用本应用 🍂";
 
@@ -22,13 +23,7 @@ function App() {
 	// 处理事件(箭头函数书写方式
 	// const handleContentInput = (e)=> console.log(e.target.value);
 	// 事件传参
-	function handleWeiboClick(id,) {
-		// 返回一个函数
-		return (e) => {
-			console.log(id);
-			console.log(e.target);
-		};
-	}
+
 
 	const falseValue1 = false;
 	const falseValue2 = null;
@@ -107,23 +102,8 @@ function App() {
 			<div className='postList'>
 				{/* 1、三元表达式：替代if-else （当然这里的map可以进行判断是否有值，我们只是为了演示三元表达式的实现效果） */}
 				{microBlogs.length>0 ? microBlogs.map((microBlog) => (
-					// onclick这种函数事件监听必须要传递一个函数，不能是函数调用的形式
-					<div
-						className="post"
-						key={microBlog.id}
-						onClick={handleWeiboClick(microBlog.id)}
-					>
-						{/* 2、||或运算符 设置默认值*/}
-						<img src={microBlog.author.avatar || 'www.demo.com/avatar.jpg'} alt=""/>
-						<div className="postContainer">
-							{/*3、&&与运算符：替代if语句*/}
-							<p className="postContent" >{microBlog.content.length > 0 && microBlog.content }</p>
-							<div className="postMeta">
-								<p className="postAuthor">{microBlog.author.name}</p>
-								<p className="postDate">{microBlog.publishDate}</p>
-							</div>
-						</div>
-					</div>
+					// reacr会自动给帮我们接受并使用key值
+					<PostListItem microBlog={microBlog} code='0-9-2战犯出列' key={microBlog.id} />
 				)):(<div>暂无数据</div>)}
 			</div>
 		</main>

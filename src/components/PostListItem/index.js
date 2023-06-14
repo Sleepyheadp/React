@@ -1,11 +1,6 @@
 import './inedx.css'
 // 给props设置默认值，防止报错
-function PostListItem({microBlog = {id:'',author:{},content:''},name,age,children}){
-  if(microBlog.id === 1) {
-    console.log('name：', name)
-    console.log('age', typeof age)
-  }
-
+function PostListItem({microBlog = {id:'',author:{},content:''},children}){
   function handleWeiboClick(id) {
     // 返回一个函数
     return (e) => {

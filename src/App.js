@@ -227,14 +227,14 @@ function App() {
 	}
 	// React组件的副作用
 	const [dateTime, setDateTime] = useState(new Date());
+	const [refresh,setRefresh] = useState(0)
 	// 每修改一次dateTime的值，定时器都会注册并执行一次，并且每次的值都不一样（副作用
-	// 第二次参数传空数组，这样仅会执行一次
+	// 第二次参数传空数组，意思是仅当前页面加载的时候会执行一次，不依赖其他数据。
+	// 如果我们传refresh，则当refresh变化的时候都会执行一次
 	useEffect(() => {
-		const id = setInterval(() => {
-			setDateTime(new Date());
-		}, 1000);
-		console.log(id);
-	}, []);
+		setDateTime(new Date());
+		console.log(refresh)
+	}, [refresh]);
 
 	return (
 		<main
@@ -396,6 +396,7 @@ function App() {
 			</ul>
 			{/* React组件的副作用	*/}
 			<h1>{dateTime.toLocaleString("zh-CN")}</h1>
+			<button onClick={()=>setRefresh(refresh + 1)}>刷新</button>
 		</main>
 	);
 }

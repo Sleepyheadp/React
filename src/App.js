@@ -11,6 +11,7 @@ import UserAvatar3  from './assets/images/user3.png';
 import PostListItem from "./components/PostListItem";
 import {Fragment, useEffect, useState} from "react";
 import Menu from "./components/Menu";
+import Layout from "./components/Layout";
 function App() {
 	const title = "欢迎使用本应用 🍂";
 
@@ -453,9 +454,27 @@ function App() {
 			</Menu>
 			{/*	子组件和父组件进行通信 */}
 			<Parent />
+			{/* JSX/组件作为props传递	*/}
+			<Layout nav={<Nav />}>
+				<div>
+					<h1>欢迎！</h1>
+				</div>
+			</Layout>
 		</main>
 	);
 }
+// JSX或者函数组件作为参数传递
+function Nav(){
+	return (
+		<div className="menu">
+			<a href="/">首页</a>
+			<a href="/product">产品</a>
+			<a href="/user">用户</a>
+		</div>
+	)
+}
+
+
 // 子传父（组件通信
 function Parent(){
 	const [inputValue,setInputValue] = useState('')

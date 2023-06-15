@@ -9,7 +9,7 @@ import UserAvatar1  from './assets/images/user1.png';
 import UserAvatar2  from './assets/images/user2.png';
 import UserAvatar3  from './assets/images/user3.png';
 import PostListItem from "./components/PostListItem";
-import {useState} from "react";
+import {Fragment, useState} from "react";
 function App() {
 	const title = "欢迎使用本应用 🍂";
 
@@ -154,6 +154,18 @@ function App() {
 		occupation: "",
 		hobbies: [],
 	});
+	// 循环遍历性别爱好控件
+	const gender = [
+		{ value: "male", label: "男" },
+		{ value: "female", label: "女" },
+	];
+
+	const hobbies = [
+		{ value: "programming", label: "编程" },
+		{ value: "drawing", label: "绘画" },
+		{ value: "music", label: "音乐" },
+	];
+
 	function handleInputChange(e) {
 		let { value, name, type } = e.target;
 		if (type === "checkbox") {
@@ -268,24 +280,19 @@ function App() {
 				/>
 				<label htmlFor="gender">性别</label>
 				<fieldset id="gender">
-					<input
-						type="radio"
-						id="male"
-						name="gender"
-						value="male"
-						checked={user.gender === "male"}
-						onChange={handleInputChange}
-					/>
-					<label htmlFor="male">男</label>
-					<input
-						type="radio"
-						id="female"
-						name="gender"
-						value="female"
-						checked={user.gender === "female"}
-						onChange={handleInputChange}
-					/>
-					<label htmlFor="female">女</label>
+					{gender.map((g) => (
+						<Fragment key={g.value}>
+							<input
+								type="radio"
+								id={g.value}
+								name="gender"
+								value={g.value}
+								checked={user.gender === g.value}
+								onChange={handleInputChange}
+							/>
+							<label htmlFor={g.value}>{g.label}</label>
+						</Fragment>
+					))}
 				</fieldset>
 				<label htmlFor="occupation">职业</label>
 				<select
@@ -301,33 +308,19 @@ function App() {
 				</select>
 				<label htmlFor="hobbies">兴趣</label>
 				<fieldset id="hobbies">
-					<input
-						type="checkbox"
-						name="hobbies"
-						value="programming"
-						id="programming"
-						onChange={handleInputChange}
-						checked={user.hobbies.includes("programming")}
-					/>
-					<label htmlFor="programming">编程</label>
-					<input
-						type="checkbox"
-						name="hobbies"
-						value="drawing"
-						id="drawing"
-						onChange={handleInputChange}
-						checked={user.hobbies.includes("drawing")}
-					/>
-					<label htmlFor="drawing">绘画</label>
-					<input
-						type="checkbox"
-						name="hobbies"
-						value="music"
-						id="music"
-						onChange={handleInputChange}
-						checked={user.hobbies.includes("music")}
-					/>
-					<label htmlFor="music">音乐</label>
+					{hobbies.map((hobby) => (
+						<Fragment>
+							<input
+								type="checkbox"
+								name="hobbies"
+								value={hobby.value}
+								id={hobby.value}
+								onChange={handleInputChange}
+								checked={user.hobbies.includes(hobby.value)}
+							/>
+							<label htmlFor={hobby.value}>{hobby.label}</label>
+						</Fragment>
+					))}
 				</fieldset>
 			</form>
 			<ul>

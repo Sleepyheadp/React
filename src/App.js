@@ -257,7 +257,7 @@ function App() {
 		setDateTime(new Date());
 	}, [refresh]);
 
-	// Fragement:循环遍历的情况要添加key属性
+	// Fragment:循环遍历的情况要添加key属性
 	const tags = ['Vue','React','Angular']
 	const tagSection = tags.map((item)=>{
 		return (
@@ -451,10 +451,28 @@ function App() {
 				<Menu.Item>关于</Menu.Item>
 				<Menu.Item>联系</Menu.Item>
 			</Menu>
+			{/*	子组件和父组件进行通信 */}
+			<Parent />
 		</main>
 	);
 }
+// 子传父（组件通信
+function Parent(){
+	const [inputValue,setInputValue] = useState('')
+	// console.log(inputValue)
+	// 修改inputValue
+	const handleInputChange = (e)=>{
+		setInputValue(e.target.value)
+		console.log(e.target.value)
+	}
+	return <Child inputValue={inputValue} onInputChange={handleInputChange}></Child>
+}
 
+function Child(props){
+	return (
+			<input type="text" value={props.inputValue} onChange={props.onInputChange}/>
+	)
+}
 function EditAndDelete({onEdit}){
 	// 子组件自身的方法及逻辑，在里面调用父组件传递过来的方法
 	function handleEdit(e){

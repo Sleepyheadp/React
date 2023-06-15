@@ -146,14 +146,15 @@ function App() {
 		setMicroBlog('')
 	}
 	// 处理其他控件的输入
-	const [user, setUser] = useState({
+	const initialForm = {
 		username: "",
 		password: "",
 		repeatPassword: "",
 		gender: "",
 		occupation: "",
 		hobbies: [],
-	});
+	}
+	const [user, setUser] = useState(initialForm);
 	// 循环遍历性别爱好控件
 	const gender = [
 		{ value: "male", label: "男" },
@@ -185,6 +186,10 @@ function App() {
 	function handleFormSubmit(e) {
 		e.preventDefault();
 		console.log(user);
+	}
+	// 重置表单数据
+	function handleFormReset(){
+		setUser(initialForm)
 	}
 	return (
 		<main
@@ -258,7 +263,7 @@ function App() {
 			</div>
 			{/* 处理表单控件的输入 input select checkbox radio	*/}
 			<h1>用户注册</h1>
-			<form onSubmit={handleFormSubmit}>
+			<form onSubmit={handleFormSubmit} onReset={handleFormReset}>
 				<label htmlFor="username">用户名</label>
 				<input
 					type="text"
@@ -328,6 +333,7 @@ function App() {
 					))}
 				</fieldset>
 				<button type='submit'>提交</button>
+				<button type='reset'>重置</button>
 			</form>
 			<ul>
 				<li>用户名：{user.username}</li>

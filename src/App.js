@@ -225,6 +225,14 @@ function App() {
 	function handleFormReset(){
 		setUser(initialForm)
 	}
+	// React组件的副作用
+	const [dateTime, setDateTime] = useState(new Date());
+	// setDateTime(new Date());
+	// 每修改一次dateTime的值，定时器都会注册并执行一次，并且每次的值都不一样（副作用
+	// const id = setInterval(() => {
+	// 	setDateTime(new Date());
+	// }, 1000);
+	// console.log(id);
 
 	return (
 		<main
@@ -384,6 +392,8 @@ function App() {
 				<li>职业：{user.occupation}</li>
 				<li>兴趣：{user.hobbies.join(", ")}</li>
 			</ul>
+			{/* React组件的副作用	*/}
+			<h1>{dateTime.toLocaleString("zh-CN")}</h1>
 		</main>
 	);
 }

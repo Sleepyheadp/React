@@ -228,12 +228,28 @@ function App() {
 	// React组件的副作用
 	const [dateTime, setDateTime] = useState(new Date());
 	const [refresh,setRefresh] = useState(0)
-	// 每修改一次dateTime的值，定时器都会注册并执行一次，并且每次的值都不一样（副作用
-	// 第二次参数传空数组，意思是仅当前页面加载的时候会执行一次，不依赖其他数据。
+	// 第二个参数传空数组，意思是仅当前页面加载的时候会执行一次，不依赖其他数据。
 	// 如果我们传refresh，则当refresh变化的时候都会执行一次
+
+	// 第一个useEffect的意思是：当页面加载的时候，设置一个定时器，每隔一秒钟更新一次时间
+	// 然后清除定时器
+	useEffect(()=>{
+		const id = setInterval(()=> {
+			setDateTime(new Date())
+		},1000)
+		console.log(id)
+		// 这里为什么要return一个函数呢？
+		// 因为useEffect的第一个参数是一个函数，这个函数会在组件卸载的时候执行
+		// 但是我们这里的函数是一个定时器，如果不清除，那么定时器会一直执行下去
+		// 所以我们需要在组件卸载的时候清除定时器
+		return()=> {
+			clearInterval(id)
+			console.log('清理了id为'+ id +'的定时器')
+		}
+	},[])
+
 	useEffect(() => {
 		setDateTime(new Date());
-		console.log(refresh)
 	}, [refresh]);
 
 	return (

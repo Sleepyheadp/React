@@ -256,6 +256,8 @@ function App() {
 		setDateTime(new Date());
 	}, [refresh]);
 
+	// Fragement:循环遍历的情况要添加key属性
+	const FragmentLists = ['Vue','React','Angular']
 	return (
 		<main
 			className="container"
@@ -417,6 +419,20 @@ function App() {
 			{/* React组件的副作用	*/}
 			<h1>{dateTime.toLocaleString("zh-CN")}</h1>
 			<button onClick={()=>setRefresh(refresh + 1)}>刷新</button>
+			{/*	JSX：Fragment进阶*/}
+			{/*不进行循环的时候，可以使用空标签替代Fragment*/}
+			<>
+				<div>capoo</div>
+				<div>25</div>
+			</>
+			{/* 循环遍历的时候必须给Fragment标签添加key属性 */}
+			{FragmentLists.map((item)=>{
+				return (
+					<Fragment key={item}>
+						<div>{item}</div>
+					</Fragment>
+				)
+			})}
 		</main>
 	);
 }

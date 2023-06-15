@@ -181,6 +181,11 @@ function App() {
 			[name]: value,
 		});
 	}
+	// 表单提交处理事件(作后续的操作
+	function handleFormSubmit(e) {
+		e.preventDefault();
+		console.log(user);
+	}
 	return (
 		<main
 			className="container"
@@ -253,7 +258,7 @@ function App() {
 			</div>
 			{/* 处理表单控件的输入 input select checkbox radio	*/}
 			<h1>用户注册</h1>
-			<form>
+			<form onSubmit={handleFormSubmit}>
 				<label htmlFor="username">用户名</label>
 				<input
 					type="text"
@@ -309,7 +314,7 @@ function App() {
 				<label htmlFor="hobbies">兴趣</label>
 				<fieldset id="hobbies">
 					{hobbies.map((hobby) => (
-						<Fragment>
+						<Fragment key={hobby.value}>
 							<input
 								type="checkbox"
 								name="hobbies"
@@ -322,6 +327,7 @@ function App() {
 						</Fragment>
 					))}
 				</fieldset>
+				<button type='submit'>提交</button>
 			</form>
 			<ul>
 				<li>用户名：{user.username}</li>

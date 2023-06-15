@@ -146,39 +146,28 @@ function App() {
 		setMicroBlog('')
 	}
 	// 处理其他控件的输入
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
-	const [repeatPassword, setRepeatPassword] = useState("");
-	const [gender, setGender] = useState("");
-	const [occupation, setOccupation] = useState("");
-	const [hobbies, setHobbies] = useState([]);
-	function handleUsernameChange(e) {
-		setUsername(e.target.value);
-	}
-
-	function handlePasswordChange(e) {
-		setPassword(e.target.value);
-	}
-
-	function handleRepeatPasswordChange(e) {
-		setRepeatPassword(e.target.value);
-	}
-
-	function handleGenderChange(e) {
-		setGender(e.target.value);
-	}
-
-	function handleOccupationChange(e) {
-		setOccupation(e.target.value);
-	}
-
-	function handleHobbiesChange(e) {
-		const { checked, value } = e.target;
-		if (checked) {
-			setHobbies([...hobbies, value]);
-		} else {
-			setHobbies(hobbies.filter((hobby) => hobby !== value));
+	const [user, setUser] = useState({
+		username: "",
+		password: "",
+		repeatPassword: "",
+		gender: "",
+		occupation: "",
+		hobbies: [],
+	});
+	function handleInputChange(e) {
+		let { value, name, type } = e.target;
+		if (type === "checkbox") {
+			const { checked } = e.target;
+			if (checked) {
+				value = [...user.hobbies, value];
+			} else {
+				value = user.hobbies.filter((hobby) => hobby !== value);
+			}
 		}
+		setUser({
+			...user,
+			[name]: value,
+		});
 	}
 	return (
 		<main
@@ -257,22 +246,25 @@ function App() {
 				<input
 					type="text"
 					id="username"
-					value={username}
-					onChange={handleUsernameChange}
+					name='username'
+					value={user.username}
+					onChange={handleInputChange}
 				/>
 				<label htmlFor="password">密码</label>
 				<input
+					name='password'
 					type="password"
 					id="password"
-					value={password}
-					onChange={handlePasswordChange}
+					value={user.password}
+					onChange={handleInputChange}
 				/>
 				<label htmlFor="repeatPassword">重复密码</label>
 				<input
+					name='repeatPassword'
 					type="password"
 					id="repeatPassword"
-					value={repeatPassword}
-					onChange={handleRepeatPasswordChange}
+					value={user.repeatPassword}
+					onChange={handleInputChange}
 				/>
 				<label htmlFor="gender">性别</label>
 				<fieldset id="gender">
@@ -281,8 +273,8 @@ function App() {
 						id="male"
 						name="gender"
 						value="male"
-						checked={gender === "male"}
-						onChange={handleGenderChange}
+						checked={user.gender === "male"}
+						onChange={handleInputChange}
 					/>
 					<label htmlFor="male">男</label>
 					<input
@@ -290,16 +282,17 @@ function App() {
 						id="female"
 						name="gender"
 						value="female"
-						checked={gender === "female"}
-						onChange={handleGenderChange}
+						checked={user.gender === "female"}
+						onChange={handleInputChange}
 					/>
 					<label htmlFor="female">女</label>
 				</fieldset>
 				<label htmlFor="occupation">职业</label>
 				<select
 					id="occupation"
-					value={occupation}
-					onChange={handleOccupationChange}
+					value={user.occupation}
+					onChange={handleInputChange}
+					name='occupation'
 				>
 					<option value="">请选择</option>
 					<option value="frontend">前端</option>
@@ -310,40 +303,40 @@ function App() {
 				<fieldset id="hobbies">
 					<input
 						type="checkbox"
-						name="hobby"
+						name="hobbies"
 						value="programming"
 						id="programming"
-						onChange={handleHobbiesChange}
-						checked={hobbies.includes("programming")}
+						onChange={handleInputChange}
+						checked={user.hobbies.includes("programming")}
 					/>
 					<label htmlFor="programming">编程</label>
 					<input
 						type="checkbox"
-						name="hobby"
+						name="hobbies"
 						value="drawing"
 						id="drawing"
-						onChange={handleHobbiesChange}
-						checked={hobbies.includes("drawing")}
+						onChange={handleInputChange}
+						checked={user.hobbies.includes("drawing")}
 					/>
 					<label htmlFor="drawing">绘画</label>
 					<input
 						type="checkbox"
-						name="hobby"
+						name="hobbies"
 						value="music"
 						id="music"
-						onChange={handleHobbiesChange}
-						checked={hobbies.includes("music")}
+						onChange={handleInputChange}
+						checked={user.hobbies.includes("music")}
 					/>
 					<label htmlFor="music">音乐</label>
 				</fieldset>
 			</form>
 			<ul>
-				<li>用户名：{username}</li>
-				<li>密码：{password}</li>
-				<li>重复密码：{repeatPassword}</li>
-				<li>性别：{gender}</li>
-				<li>职业：{occupation}</li>
-				<li>兴趣：{hobbies.join(", ")}</li>
+				<li>用户名：{user.username}</li>
+				<li>密码：{user.password}</li>
+				<li>重复密码：{user.repeatPassword}</li>
+				<li>性别：{user.gender}</li>
+				<li>职业：{user.occupation}</li>
+				<li>兴趣：{user.hobbies.join(", ")}</li>
 			</ul>
 		</main>
 	);

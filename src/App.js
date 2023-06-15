@@ -9,7 +9,7 @@ import UserAvatar1  from './assets/images/user1.png';
 import UserAvatar2  from './assets/images/user2.png';
 import UserAvatar3  from './assets/images/user3.png';
 import PostListItem from "./components/PostListItem";
-import {Fragment, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 function App() {
 	const title = "欢迎使用本应用 🍂";
 
@@ -227,12 +227,14 @@ function App() {
 	}
 	// React组件的副作用
 	const [dateTime, setDateTime] = useState(new Date());
-	// setDateTime(new Date());
 	// 每修改一次dateTime的值，定时器都会注册并执行一次，并且每次的值都不一样（副作用
-	// const id = setInterval(() => {
-	// 	setDateTime(new Date());
-	// }, 1000);
-	// console.log(id);
+	// 第二次参数传空数组，这样仅会执行一次
+	useEffect(() => {
+		const id = setInterval(() => {
+			setDateTime(new Date());
+		}, 1000);
+		console.log(id);
+	}, []);
 
 	return (
 		<main

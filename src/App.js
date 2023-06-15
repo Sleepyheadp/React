@@ -265,6 +265,16 @@ function App() {
 			</Fragment>
 		)
 	})
+	// 条件渲染的另一种形式
+	const [userCapoo,setUserCapoo] = useState()
+	useEffect(()=>{
+		setTimeout(()=>{
+			setUserCapoo('Capoo-条件渲染的另一种形式')
+		},3000)
+	},[])
+	if(!userCapoo){
+		return <div>loading......</div>
+	}
 	return (
 		<main
 			className="container"
@@ -429,7 +439,7 @@ function App() {
 			{/*	JSX：Fragment进阶*/}
 			{/*不进行循环的时候，可以使用空标签替代Fragment*/}
 			<>
-				<div>capoo</div>
+				<div>{userCapoo}</div>
 				<div>25</div>
 			</>
 			{/* 循环遍历的时候必须给Fragment标签添加key属性 */}

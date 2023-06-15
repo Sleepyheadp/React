@@ -18,4 +18,12 @@
   justify-self: end;
 }
 
+.formUser{
+  display: flex;
+  flex-direction: column;
+}
+.formError{
+  color: red;
+}
+
 

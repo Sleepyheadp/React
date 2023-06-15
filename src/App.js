@@ -181,16 +181,51 @@ function App() {
 			...user,
 			[name]: value,
 		});
+		// 输入的时候进行校验
+		const error = rules[name] && rules[name](value);
+		setFormErrors({
+			...formErrors,
+			[name]: error,
+		});
 	}
 	// 表单提交处理事件(作后续的操作
+
+	// 表单验证
+	const [formErrors, setFormErrors] = useState({});
+
+	const rules = {
+		username: (value) => {
+			if (value.length < 3 || value.length > 12) {
+				return "用户名必须大于 3 且小于 12 个字符";
+			}
+		},
+		password: (value) => {
+			if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value)) {
+				return "密码必须大于 8 个字符，且至少包含一个字母和数字";
+			}
+		},
+	};
 	function handleFormSubmit(e) {
 		e.preventDefault();
-		console.log(user);
+		// console.log(user);
+		for (let rule of Object.keys(rules)) {
+			const error = rules[rule](user[rule]);
+			if (error) {
+				setFormErrors({
+					...formErrors,
+					[rule]: error,
+				});
+				return;
+			}
+		}
+		console.log(user)
 	}
+
 	// 重置表单数据
 	function handleFormReset(){
 		setUser(initialForm)
 	}
+
 	return (
 		<main
 			className="container"
@@ -263,7 +298,7 @@ function App() {
 			</div>
 			{/* 处理表单控件的输入 input select checkbox radio	*/}
 			<h1>用户注册</h1>
-			<form onSubmit={handleFormSubmit} onReset={handleFormReset}>
+			<form className='formUser' onSubmit={handleFormSubmit} onReset={handleFormReset}>
 				<label htmlFor="username">用户名</label>
 				<input
 					type="text"
@@ -272,6 +307,9 @@ function App() {
 					value={user.username}
 					onChange={handleInputChange}
 				/>
+				{formErrors.username && (
+					<span className="formError">{formErrors.username}</span>
+				)}
 				<label htmlFor="password">密码</label>
 				<input
 					name='password'
@@ -280,6 +318,9 @@ function App() {
 					value={user.password}
 					onChange={handleInputChange}
 				/>
+				{formErrors.password && (
+					<span className="formError">{formErrors.password}</span>
+				)}
 				<label htmlFor="repeatPassword">重复密码</label>
 				<input
 					name='repeatPassword'

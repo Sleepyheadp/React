@@ -257,7 +257,14 @@ function App() {
 	}, [refresh]);
 
 	// Fragement:循环遍历的情况要添加key属性
-	const FragmentLists = ['Vue','React','Angular']
+	const tags = ['Vue','React','Angular']
+	const tagSection = tags.map((item)=>{
+		return (
+			<Fragment key={item}>
+				<div>{item}</div>
+			</Fragment>
+		)
+	})
 	return (
 		<main
 			className="container"
@@ -426,13 +433,7 @@ function App() {
 				<div>25</div>
 			</>
 			{/* 循环遍历的时候必须给Fragment标签添加key属性 */}
-			{FragmentLists.map((item)=>{
-				return (
-					<Fragment key={item}>
-						<div>{item}</div>
-					</Fragment>
-				)
-			})}
+			{tagSection}
 		</main>
 	);
 }

@@ -10,6 +10,7 @@ import UserAvatar2  from './assets/images/user2.png';
 import UserAvatar3  from './assets/images/user3.png';
 import PostListItem from "./components/PostListItem";
 import {Fragment, useEffect, useState} from "react";
+import Menu from "./components/Menu";
 function App() {
 	const title = "欢迎使用本应用 🍂";
 
@@ -270,7 +271,7 @@ function App() {
 	useEffect(()=>{
 		setTimeout(()=>{
 			setUserCapoo('Capoo-条件渲染的另一种形式')
-		},3000)
+		},1000)
 	},[])
 	if(!userCapoo){
 		return <div>loading......</div>
@@ -444,6 +445,12 @@ function App() {
 			</>
 			{/* 循环遍历的时候必须给Fragment标签添加key属性 */}
 			{tagSection}
+			{/* 导出子组件 */}
+			<Menu>
+				<Menu.Item>主页</Menu.Item>
+				<Menu.Item>关于</Menu.Item>
+				<Menu.Item>联系</Menu.Item>
+			</Menu>
 		</main>
 	);
 }

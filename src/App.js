@@ -18,9 +18,9 @@ function App() {
 	}
 
 	// 处理事件(普通函数书写方式
-	function handleContentInput(e) {
-		console.log(e.target.value);
-	}
+	// function handleContentInput(e) {
+	// 	console.log(e.target.value);
+	// }
 	// 处理事件(箭头函数书写方式
 	// const handleContentInput = (e)=> console.log(e.target.value);
 	// 事件传参
@@ -33,7 +33,7 @@ function App() {
 	const falseValue5 = 0;
 	const falseValue6 = NaN;
 
-	const microBlogs = [
+	const [microBlogs,setMicroBlogs] = useState([
 		{
 			id: 1,
 			author: {
@@ -64,7 +64,7 @@ function App() {
 				"这是一条微博信息，今天的天气真不错啊，出去玩啊？你们觉得怎么样？要不下午4 点出去？",
 			publishDate: "2022-10-25",
 		},
-	];
+	]);
 
 	// 内联样式(1、定义一个样式对象，2、在元素中使用style属性
 	const hStyle = {
@@ -125,6 +125,26 @@ function App() {
 		const { age, ...newPerson } = person;
 		setPerson(newPerson);
 	}
+	// 处理textarea控件的输入
+	const [microBlog,setMicroBlog] = useState([])
+	// 把输入的内容保存到microBlog中
+	function handleChange(e){
+		setMicroBlog(e.target.value)
+	}
+	function handlePublish(){
+		const newMicroBlog = {
+			id:microBlogs.length+1,
+			author:{
+				name:'capoo',
+				avatar:UserAvatar1,
+			},
+			content:microBlog,
+			publishDate:new Date().toISOString().split('T')[0],
+		}
+		setMicroBlogs([...microBlogs,newMicroBlog])
+		// 发布完内容后清空输入框
+		setMicroBlog('')
+	}
 
 	return (
 		<main
@@ -147,12 +167,14 @@ function App() {
 			</h1>
 			<div className='publishBlog'>
 				<textarea
-					onInput={handleContentInput}
+					onChange={handleChange}
 					placeholder="写点什么吧..."
+					value={microBlog}
 					cols="30"
 					rows="5"
+					style={{border:'1px solid #ccc'}}
 				></textarea>
-				<button>发布</button>
+				<button onClick={handlePublish}>发布</button>
 			</div>
 			<div className='postList'>
 				{/* 1、三元表达式：替代if-else （当然这里的map可以进行判断是否有值，我们只是为了演示三元表达式的实现效果） */}

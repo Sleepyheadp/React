@@ -233,9 +233,13 @@ function App() {
 
 	// 第一个useEffect的意思是：当页面加载的时候，设置一个定时器，每隔一秒钟更新一次时间
 	// 然后清除定时器
+	async function updateTime(){
+		await new Promise((resolve)=>{setTimeout(resolve,3000)})
+		setDateTime(new Date())
+	}
 	useEffect(()=>{
 		const id = setInterval(()=> {
-			setDateTime(new Date())
+			updateTime();
 		},1000)
 		console.log(id)
 		// 这里为什么要return一个函数呢？

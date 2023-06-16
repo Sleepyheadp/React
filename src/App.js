@@ -9,7 +9,7 @@ import UserAvatar1  from './assets/images/user1.png';
 import UserAvatar2  from './assets/images/user2.png';
 import UserAvatar3  from './assets/images/user3.png';
 import PostListItem from "./components/PostListItem";
-import {Fragment, useEffect, useReducer, useState} from "react";
+import {Fragment, useCallback, useEffect, useReducer, useState} from "react";
 import Menu from "./components/Menu";
 import Layout from "./components/Layout";
 import BlogPostDetails from "./components/BlogPostDetails";
@@ -241,6 +241,7 @@ function App() {
 	// 第一个useEffect的意思是：当页面加载的时候，设置一个定时器，每隔一秒钟更新一次时间
 	// 然后清除定时器
 	async function updateTime(){
+		// 3s后更新时间
 		await new Promise((resolve)=>{setTimeout(resolve,3000)})
 		setDateTime(new Date())
 	}
@@ -248,7 +249,7 @@ function App() {
 		const id = setInterval(()=> {
 			updateTime();
 		},1000)
-		console.log(id)
+		console.log('updateId:',id)
 		// 这里为什么要return一个函数呢？
 		// 因为useEffect的第一个参数是一个函数，这个函数会在组件卸载的时候执行
 		// 但是我们这里的函数是一个定时器，如果不清除，那么定时器会一直执行下去
@@ -278,6 +279,18 @@ function App() {
 		setDateTime(new Date());
 	}, [refresh]);
 
+	// 使用useCallback解决多个useEffect互相影响的问题
+	const [city,setCity] = useState('北京')
+	const [weather,setWeather] = useState(20)
+	const getWeather = useCallback(()=> {
+		if(city === '北京') return 20;
+		if(city === '上海') return 25;
+		if(city === '重庆') return 30;
+	},[city])
+	useEffect(()=>{
+		console.log('running....')
+		setWeather(getWeather())
+	},[getWeather])
 	// Fragment:循环遍历的情况要添加key属性
 	const tags = ['Vue','React','Angular']
 	const tagSection = tags.map((item)=>{
@@ -372,6 +385,8 @@ function App() {
 			id,
 		})
 	}
+
+
 	return (
 		<main
 			className="container"
@@ -531,7 +546,15 @@ function App() {
 				<li>兴趣：{user.hobbies.join(", ")}</li>
 			</ul>
 			{/* React组件的副作用	*/}
-			{/*<h1>{dateTime.toLocaleString("zh-CN")}</h1>*/}
+			<h1>{dateTime.toLocaleString("zh-CN")}</h1>
+			{/* useCallback的使用 */}
+			<p>{city}天气：{weather}度</p>
+			<label htmlFor="weather">选择天气：</label>
+			<select onChange={(e)=>setCity(e.target.value)} name="" id="weather">
+				<option value="北京">北京</option>
+				<option value="上海">上海</option>
+				<option value="重庆">重庆</option>
+			</select>
 			{/* useEffect第二个参数进阶使用 */}
 			<h1>{seconds}</h1>
 			<button onClick={()=>setRefresh(refresh + 1)}>刷新</button>

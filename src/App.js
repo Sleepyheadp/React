@@ -15,6 +15,8 @@ import Layout from "./components/Layout";
 import BlogPostDetails from "./components/BlogPostDetails";
 import Request from "./components/Request";
 import UserDataCard from "./components/UserDataCard";
+import NoteCount from "./components/NoteCount";
+import NoteList from "./components/NoteList";
 function App() {
 	const title = "欢迎使用本应用 🍂";
 
@@ -306,6 +308,22 @@ function App() {
 		rate:'8.98%'
 	}
 
+	// 组件之间state的共享
+	const [note,setNote] = useState('')
+	const [notes,setNotes] = useState([])
+
+	function addNote(){
+			setNotes([
+				...notes,
+				{
+					id: notes.length + 1,
+					note: note
+				}
+			])
+			// 点击完'添加笔记'后，清空输入框的值
+			setNote('')
+	}
+
 	return (
 		<main
 			className="container"
@@ -514,6 +532,16 @@ function App() {
 				message='Hello React'
 				userData={userData}
 			></UserDataCard>
+			{/* 不同组件之间共享状态 */}
+			<NoteList notes={notes}></NoteList>
+			<input
+				type="text"
+				placeholder='输入笔记内容'
+				value={note}
+				onChange={(e)=>setNote(e.target.value)}
+			/>
+			<button onClick={addNote}>添加笔记</button>
+			<NoteCount count={notes.length + 1}/>
 		</main>
 	);
 }

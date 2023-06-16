@@ -14,6 +14,7 @@ import Menu from "./components/Menu";
 import Layout from "./components/Layout";
 import BlogPostDetails from "./components/BlogPostDetails";
 import Request from "./components/Request";
+import UserDataCard from "./components/UserDataCard";
 function App() {
 	const title = "欢迎使用本应用 🍂";
 
@@ -299,6 +300,12 @@ function App() {
 		});
 	}
 
+	// props透传
+	const userData = {
+		count:3.22,
+		rate:'8.98%'
+	}
+
 	return (
 		<main
 			className="container"
@@ -500,6 +507,8 @@ function App() {
 					return <div>{data?.user}</div>
 				}}
 			</Request>
+			{/*	Props透传 */}
+			<UserDataCard message='Hello React' userData={userData}></UserDataCard>
 		</main>
 	);
 }

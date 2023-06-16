@@ -13,6 +13,7 @@ import {Fragment, useEffect, useState} from "react";
 import Menu from "./components/Menu";
 import Layout from "./components/Layout";
 import BlogPostDetails from "./components/BlogPostDetails";
+import Request from "./components/Request";
 function App() {
 	const title = "欢迎使用本应用 🍂";
 
@@ -490,6 +491,15 @@ function App() {
 				author={blogPost.author}
 				tags={blogPost.tags}
 			/>
+			{/* 子传父：利用children进行传值 */}
+			<Request>
+				{({loading,data})=>{
+					if(loading){
+						return <div>loading...children</div>
+					}
+					return <div>{data?.user}</div>
+				}}
+			</Request>
 		</main>
 	);
 }

@@ -508,7 +508,12 @@ function App() {
 				}}
 			</Request>
 			{/*	Props透传 */}
-			<UserDataCard message='Hello React' userData={userData}></UserDataCard>
+			<UserDataCard
+				className='yellowFont'
+				pClass='redFont'
+				message='Hello React'
+				userData={userData}
+			></UserDataCard>
 		</main>
 	);
 }

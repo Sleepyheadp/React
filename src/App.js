@@ -9,7 +9,7 @@ import UserAvatar1  from './assets/images/user1.png';
 import UserAvatar2  from './assets/images/user2.png';
 import UserAvatar3  from './assets/images/user3.png';
 import PostListItem from "./components/PostListItem";
-import {Fragment, useEffect, useState} from "react";
+import {Fragment, useEffect, useReducer, useState} from "react";
 import Menu from "./components/Menu";
 import Layout from "./components/Layout";
 import BlogPostDetails from "./components/BlogPostDetails";
@@ -310,25 +310,51 @@ function App() {
 
 	// 组件之间state的共享
 	const [note,setNote] = useState('')
-	const [notes,setNotes] = useState([])
-
+	// useReducer：集中处理修改状态逻辑
+	const [notes,dispatch] = useReducer(notesReducer,[])
+	let noteId = 0;
+	function notesReducer(notes,action){
+		switch(action.type){
+			case 'add': {
+				return [
+					...notes,
+					{
+						id: action.id,
+						note: action.note
+					}
+				]
+			}
+			case 'delete':{
+				return notes.filter((note)=> note.id !== action.id)
+			}
+			default :{
+				throw Error('没有此action类型')
+			}
+		}
+	}
 	function addNote(){
-			setNotes([
-				...notes,
-				{
-					id: notes.length + 1,
-					note: note
-				}
-			])
-			// 点击完'添加笔记'后，清空输入框的值
+		if(note === ''){
+			alert('请输入笔记内容')
+		}else{
+			dispatch({
+				type:'add',
+				id:noteId++,
+				note
+			})
+			// // 点击完'添加笔记'后，清空输入框的值
 			setNote('')
+		}
 	}
 	// 获取到state最新的值
 	function handleNoteInput(e){
-		setNote((prevNote)=>{
-			console.log(prevNote)
-			console.log(e.target.value)
+		setNote(()=>{
 			return e.target.value
+		})
+	}
+	function deleteNoteById(id){
+		dispatch({
+			type:'delete',
+			id,
 		})
 	}
 	return (
@@ -540,7 +566,7 @@ function App() {
 				userData={userData}
 			></UserDataCard>
 			{/* 不同组件之间共享状态 */}
-			<NoteList notes={notes}></NoteList>
+			<NoteList onDelete={deleteNoteById} notes={notes}></NoteList>
 			<input
 				type="text"
 				placeholder='输入笔记内容'
@@ -548,7 +574,7 @@ function App() {
 				onChange={handleNoteInput}
 			/>
 			<button onClick={addNote}>添加笔记</button>
-			<NoteCount count={notes.length + 1}/>
+			<NoteCount count={notes.length}/>
 		</main>
 	);
 }

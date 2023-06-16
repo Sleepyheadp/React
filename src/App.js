@@ -323,7 +323,14 @@ function App() {
 			// 点击完'添加笔记'后，清空输入框的值
 			setNote('')
 	}
-
+	// 获取到state最新的值
+	function handleNoteInput(e){
+		setNote((prevNote)=>{
+			console.log(prevNote)
+			console.log(e.target.value)
+			return e.target.value
+		})
+	}
 	return (
 		<main
 			className="container"
@@ -538,7 +545,7 @@ function App() {
 				type="text"
 				placeholder='输入笔记内容'
 				value={note}
-				onChange={(e)=>setNote(e.target.value)}
+				onChange={handleNoteInput}
 			/>
 			<button onClick={addNote}>添加笔记</button>
 			<NoteCount count={notes.length + 1}/>

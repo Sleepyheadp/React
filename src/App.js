@@ -259,6 +259,21 @@ function App() {
 		}
 	},[])
 
+	// useEffect 解决
+	const [seconds,setSeconds] = useState(0)
+	useEffect(()=>{
+		const id = setInterval(()=>{
+			// 核心代码，使用箭头函数的形式，在内部对state进行修改
+			setSeconds((prev) => prev + 1)
+		},1000)
+		console.log('创建了id',id)
+		return ()=>{
+			console.log('清除了id',id)
+			clearInterval(id)
+		}
+	},[])
+
+
 	useEffect(() => {
 		setDateTime(new Date());
 	}, [refresh]);
@@ -516,7 +531,9 @@ function App() {
 				<li>兴趣：{user.hobbies.join(", ")}</li>
 			</ul>
 			{/* React组件的副作用	*/}
-			<h1>{dateTime.toLocaleString("zh-CN")}</h1>
+			{/*<h1>{dateTime.toLocaleString("zh-CN")}</h1>*/}
+			{/* useEffect第二个参数进阶使用 */}
+			<h1>{seconds}</h1>
 			<button onClick={()=>setRefresh(refresh + 1)}>刷新</button>
 			{/*	JSX：Fragment进阶*/}
 			{/*不进行循环的时候，可以使用空标签替代Fragment*/}

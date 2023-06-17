@@ -17,9 +17,28 @@ import Request from "./components/Request";
 import UserDataCard from "./components/UserDataCard";
 import NoteCount from "./components/NoteCount";
 import NoteList from "./components/NoteList";
+
+// 避免重新渲染
+const data = [
+	{
+		id: 1,
+		title: "学习 React",
+		content: "这是一篇关于学习 React 的文章",
+	},
+	{
+		id: 2,
+		title: "学习 Hook",
+		content: "这是一篇关于学习 Hook 的文章",
+	},
+	{
+		id: 3,
+		title: "学习 Redux",
+		content: "这是一篇关于学习 Redux 的文章",
+	},
+];
 function App() {
 	const title = "欢迎使用本应用 🍂";
-
+	const [id,setId] = useState(1)
 	function getTitle() {
 		return "欢迎使用本应用（函数） 🍂";
 	}
@@ -387,7 +406,6 @@ function App() {
 		})
 	}
 
-
 	return (
 		<main
 			className="container"
@@ -616,6 +634,15 @@ function App() {
 			/>
 			<button onClick={addNote}>添加笔记</button>
 			<NoteCount count={notes.length}/>
+			{/* 在请求远程数据时避免重新渲染 */}
+			<div>
+				<PostItem id={id}/>
+				<div>
+					<button onClick={()=> setId(1)}>1</button>
+					<button onClick={()=> setId(2)}>2</button>
+					<button onClick={()=> setId(3)}>3</button>
+				</div>
+			</div>
 		</main>
 	);
 }
@@ -659,6 +686,27 @@ function EditAndDelete({onEdit}){
 	return (
 		<div>
 			<a onClick={handleEdit} href='https://www.baidu.com'>编辑</a> <a href='https://www.google.com'>删除</a>
+		</div>
+	)
+}
+function PostItem({id}){
+	const [postItem,setPostItem] = useState({})
+	useEffect(()=>{
+		let canceled = false
+		setTimeout(()=>{
+			if(!canceled){
+				setPostItem(data[id -1])
+			}
+		},500)
+		return ()=>{
+			canceled = true
+		}
+	},[id])
+
+	return (
+		<div>
+			<h2>{postItem.title}</h2>
+			<p>{postItem.content}</p>
 		</div>
 	)
 }

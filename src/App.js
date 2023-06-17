@@ -9,7 +9,7 @@ import UserAvatar1  from './assets/images/user1.png';
 import UserAvatar2  from './assets/images/user2.png';
 import UserAvatar3  from './assets/images/user3.png';
 import PostListItem from "./components/PostListItem";
-import {Fragment, useCallback, useEffect, useReducer, useState} from "react";
+import {Fragment, useEffect, useReducer, useState} from "react";
 import Menu from "./components/Menu";
 import Layout from "./components/Layout";
 import BlogPostDetails from "./components/BlogPostDetails";
@@ -282,15 +282,16 @@ function App() {
 	// 使用useCallback解决多个useEffect互相影响的问题
 	const [city,setCity] = useState('北京')
 	const [weather,setWeather] = useState(20)
-	const getWeather = useCallback(()=> {
+	function getWeather (city){
 		if(city === '北京') return 20;
 		if(city === '上海') return 25;
 		if(city === '重庆') return 30;
-	},[city])
+	}
+	// 这个useEffect依赖的是一个函数，需要使用useCallback解决多个useEffect互相影响的问题
 	useEffect(()=>{
 		console.log('running....')
-		setWeather(getWeather())
-	},[getWeather])
+		setWeather(getWeather(city))
+	},[city])
 	// Fragment:循环遍历的情况要添加key属性
 	const tags = ['Vue','React','Angular']
 	const tagSection = tags.map((item)=>{
@@ -628,8 +629,6 @@ function Nav(){
 		</div>
 	)
 }
-
-
 // 子传父（组件通信
 function Parent(){
 	const [inputValue,setInputValue] = useState('')
@@ -641,7 +640,6 @@ function Parent(){
 	}
 	return <Child inputValue={inputValue} onInputChange={handleInputChange}></Child>
 }
-
 function Child(props){
 	return (
 			<input type="text" value={props.inputValue} onChange={props.onInputChange}/>

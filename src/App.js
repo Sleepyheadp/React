@@ -282,16 +282,16 @@ function App() {
 	// 使用useCallback解决多个useEffect互相影响的问题
 	const [city,setCity] = useState('北京')
 	const [weather,setWeather] = useState(20)
-	function getWeather (city){
-		if(city === '北京') return 20;
-		if(city === '上海') return 25;
-		if(city === '重庆') return 30;
+	function handleCityChange(e){
+		setCity(e.target.value)
+		// 为什么这里的city取的是上一次修改的值呢？
+		// 因为react会把所有的setXXX函数都放到一个队列里面，等到所有的代码执行完毕之后，再统一更新state
+		// 所以这里的city还是上一次的值，而不是最新的值
+		// setWeather(city === '北京' ? 20 : city === '上海'?25:30)
+		// 直接取e.target.value就可以了
+		setWeather(e.target.value === '北京' ? 20 : e.target.value === '上海'?25:30)
 	}
-	// 这个useEffect依赖的是一个函数，需要使用useCallback解决多个useEffect互相影响的问题
-	useEffect(()=>{
-		console.log('running....')
-		setWeather(getWeather(city))
-	},[city])
+
 	// Fragment:循环遍历的情况要添加key属性
 	const tags = ['Vue','React','Angular']
 	const tagSection = tags.map((item)=>{
@@ -551,7 +551,7 @@ function App() {
 			{/* useCallback的使用 */}
 			<p>{city}天气：{weather}度</p>
 			<label htmlFor="weather">选择天气：</label>
-			<select onChange={(e)=>setCity(e.target.value)} name="" id="weather">
+			<select onChange={handleCityChange} name="" id="weather">
 				<option value="北京">北京</option>
 				<option value="上海">上海</option>
 				<option value="重庆">重庆</option>

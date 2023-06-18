@@ -28,6 +28,7 @@ import CardTitle from "components/CardTitle";
 import CardContent from "components/CardContent";
 import SearchInput from "components/SearchInput";
 import Button from "./components/Button";
+import useWindowSize from "./hooks/useWindowSize";
 // 组件懒加载
 const LazyContent = lazy(() => delayForDemo(import('./components/LazyLoad/LazyContent')));
 // 避免重新渲染
@@ -423,6 +424,8 @@ function App() {
 		console.log('子组件的值：',query)
 		console.log('父组件的值：',childrenValueRef.current)
 	}
+	// 自定义hook
+	const windowSize = useWindowSize()
 	return (
 		<main
 			className="container"
@@ -690,6 +693,11 @@ function App() {
 			{/*	高阶组件：已被Hooks代替 */}
 			<>
 				<Button theme='dark'>按钮</Button>
+			</>
+			{/*	自定义hooks */}
+			<>
+				<h1>width:{windowSize.width}</h1>
+				<h1>height:{windowSize.height}</h1>
 			</>
 		</main>
 	);

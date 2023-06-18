@@ -1,22 +1,29 @@
 import {useEffect, useState} from "react";
 
-function useWindowSize(){
+function useWindowSize(throttleDuration){
   const [windowSize,setWindowSize] = useState({
     width:window.innerWidth,
     height:window.innerHeight
   });
   useEffect(()=>{
+    let timeoutId = null;
     const handleResize= ()=>{
-      setWindowSize({
-        width:window.innerWidth,
-        height:window.innerHeight
-      })
+      if(!timeoutId){
+        timeoutId = setTimeout(()=>{
+          setWindowSize({
+            width:window.innerWidth,
+            height:window.innerHeight
+          })
+          timeoutId = null
+        },throttleDuration);
+      }
     }
     window.addEventListener("resize",handleResize);
     return ()=>{
+      clearInterval(timeoutId);
       window.removeEventListener("resize",handleResize);
     }
-  },[])
+  },[throttleDuration])
   return windowSize;
 }
 export default useWindowSize;

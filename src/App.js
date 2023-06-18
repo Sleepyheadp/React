@@ -425,7 +425,7 @@ function App() {
 		console.log('父组件的值：',childrenValueRef.current)
 	}
 	// 自定义hook
-	const windowSize = useWindowSize()
+	const windowSize = useWindowSize(1000)
 	return (
 		<main
 			className="container"

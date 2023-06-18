@@ -1,8 +1,11 @@
 import React from "react";
 import "./style.css";
 
-function Card({ children }) {
-  return <div className="card">{children}</div>;
+function Card({ children,name }) {
+  return <div className="card">
+    {name}
+    {children}
+  </div>;
 }
 
 export default Card;

@@ -660,8 +660,13 @@ function App() {
 				<Logo width="100" height="100" fill="#0000FF" />
 			</>
 			{/* children：避免props多层传递，直接在App.js中引入全部子组件，直接传递props */}
+			{/*
+          受控组件：内部不进行一些逻辑操作，只进行展示，并且只接收父组件传递的props和方法。
+          只是一种对组件的称呼，不是一种组件的类型。
+          这里的Card就是一个受控组件。
+        */}
 			<>
-				<Card>
+				<Card name='我是父组件'>
 					<CardTitle underline>卡片标题</CardTitle>
 					<CardContent>卡片内容</CardContent>
 				</Card>

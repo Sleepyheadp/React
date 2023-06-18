@@ -9,7 +9,7 @@ import UserAvatar1  from './assets/images/user1.png';
 import UserAvatar2  from './assets/images/user2.png';
 import UserAvatar3  from './assets/images/user3.png';
 import PostListItem from "./components/PostListItem";
-import {Fragment, useEffect, useReducer, useState} from "react";
+import {Fragment, lazy, Suspense, useEffect, useReducer, useState} from "react";
 import Menu from "./components/Menu";
 import Layout from "./components/Layout";
 import BlogPostDetails from "./components/BlogPostDetails";
@@ -17,7 +17,8 @@ import Request from "./components/Request";
 import UserDataCard from "./components/UserDataCard";
 import NoteCount from "./components/NoteCount";
 import NoteList from "./components/NoteList";
-
+// 组件懒加载
+const LazyContent = lazy(() => delayForDemo(import('./components/LazyLoad/LazyContent')));
 // 避免重新渲染
 const data = [
 	{
@@ -42,7 +43,6 @@ function App() {
 	function getTitle() {
 		return "欢迎使用本应用（函数） 🍂";
 	}
-
 	// 处理事件(普通函数书写方式
 	// function handleContentInput(e) {
 	// 	console.log(e.target.value);
@@ -50,8 +50,6 @@ function App() {
 	// 处理事件(箭头函数书写方式
 	// const handleContentInput = (e)=> console.log(e.target.value);
 	// 事件传参
-
-
 	const falseValue1 = false;
 	const falseValue2 = null;
 	const falseValue3 = undefined;
@@ -405,7 +403,6 @@ function App() {
 			id,
 		})
 	}
-
 	return (
 		<main
 			className="container"
@@ -645,6 +642,8 @@ function App() {
 			</div>
 			{/*	错误处理 */}
 			<HandleError/>
+			{/* 组件懒加载	*/}
+			<LazyComponent/>
 		</main>
 	);
 }
@@ -729,5 +728,32 @@ function HandleError(){
 		return <div>处理组件报错:{error.message}</div>
 	}
 	return <div>正常情况下显示的内容</div>
+}
+// 组件懒加载
+function LazyComponent(){
+	const [showPreview, setShowPreview] = useState(false);
+	const [markdown, setMarkdown] = useState('Hello, lazyComponent!');
+	return (
+		<>
+			<textarea value={markdown} onChange={e => setMarkdown(e.target.value)} />
+			<label>
+				<input type="checkbox" checked={showPreview} onChange={e => setShowPreview(e.target.checked)} />
+				Show preview
+			</label>
+			<hr />
+			{showPreview && (
+				<Suspense fallback={<div>loading...</div>}>
+					<h2>Preview</h2>
+					<LazyContent markdown={markdown} />
+				</Suspense>
+			)}
+		</>
+	);
+}
+// 添加一个固定的延迟时间，以便你可以看到加载状态
+function delayForDemo(promise) {
+	return new Promise(resolve => {
+		setTimeout(resolve, 2000);
+	}).then(() => promise);
 }
 export default App;

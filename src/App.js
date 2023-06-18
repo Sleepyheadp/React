@@ -27,6 +27,7 @@ import Card from "components/Card";
 import CardTitle from "components/CardTitle";
 import CardContent from "components/CardContent";
 import SearchInput from "components/SearchInput";
+import Button from "./components/Button";
 // 组件懒加载
 const LazyContent = lazy(() => delayForDemo(import('./components/LazyLoad/LazyContent')));
 // 避免重新渲染
@@ -686,6 +687,10 @@ function App() {
 			<SearchInput
 				onChange={handleQueryPropsChange}
 			/>
+			{/*	高阶组件：已被Hooks代替 */}
+			<>
+				<Button theme='dark'>按钮</Button>
+			</>
 		</main>
 	);
 }

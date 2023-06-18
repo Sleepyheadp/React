@@ -17,6 +17,11 @@ import Request from "./components/Request";
 import UserDataCard from "./components/UserDataCard";
 import NoteCount from "./components/NoteCount";
 import NoteList from "./components/NoteList";
+// SVG
+// import logo from "./assets/icons/logo.svg";
+// 把svg转换成react组件（Vite脚手架不支持这种写法
+// import {ReactComponent as Logo } from "./assets/icons/logo.svg";
+import Logo from "./assets/icons/Logo";
 // 组件懒加载
 const LazyContent = lazy(() => delayForDemo(import('./components/LazyLoad/LazyContent')));
 // 避免重新渲染
@@ -644,6 +649,12 @@ function App() {
 			<HandleError/>
 			{/* 组件懒加载	*/}
 			<LazyComponent/>
+			{/* SVG */}
+			<>
+				{/* <img src={logo} alt="" width={220} /> */}
+				{/* <Logo width="500" height="500" fill="#FF0000" /> */}
+				<Logo width="100" height="100" fill="#0000FF" />
+			</>
 		</main>
 	);
 }

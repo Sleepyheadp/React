@@ -29,6 +29,7 @@ import CardContent from "components/CardContent";
 import SearchInput from "components/SearchInput";
 import Button from "./components/Button";
 import useWindowSize from "./hooks/useWindowSize";
+import ResponsiveContent from "./components/ResponsiveContent";
 // 组件懒加载
 const LazyContent = lazy(() => delayForDemo(import('./components/LazyLoad/LazyContent')));
 // 避免重新渲染
@@ -699,6 +700,8 @@ function App() {
 				<h1>width:{windowSize.width}</h1>
 				<h1>height:{windowSize.height}</h1>
 			</>
+			{/* 在不同组件中复用自定义Hooks	*/}
+			<ResponsiveContent/>
 		</main>
 	);
 }

@@ -643,6 +643,8 @@ function App() {
 					<button onClick={()=> setId(3)}>3</button>
 				</div>
 			</div>
+			{/*	错误处理 */}
+			<HandleError/>
 		</main>
 	);
 }
@@ -709,5 +711,23 @@ function PostItem({id}){
 			<p>{postItem.content}</p>
 		</div>
 	)
+}
+// 组件内错误处理 404 notfound （一般是定义一个统一的错误处理组件
+function HandleError(){
+	const [error,setError] = useState(null)
+	useEffect(()=>{
+		try{
+			let responseError;
+			responseError = {status: 404, message: 'Not Found'};
+			// 主动抛出错误 场景演示
+			throw responseError
+		}catch(error){
+			setError(error)
+		}
+	},[])
+	if(error){
+		return <div>处理组件报错:{error.message}</div>
+	}
+	return <div>正常情况下显示的内容</div>
 }
 export default App;

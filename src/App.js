@@ -9,7 +9,7 @@ import UserAvatar1  from './assets/images/user1.png';
 import UserAvatar2  from './assets/images/user2.png';
 import UserAvatar3  from './assets/images/user3.png';
 import PostListItem from "./components/PostListItem";
-import {Fragment, lazy, Suspense, useEffect, useReducer, useState} from "react";
+import {Fragment, lazy, Suspense, useEffect, useReducer, useRef, useState} from "react";
 import Menu from "./components/Menu";
 import Layout from "./components/Layout";
 import BlogPostDetails from "./components/BlogPostDetails";
@@ -26,6 +26,7 @@ import Logo from "assets/icons/Logo";
 import Card from "components/Card";
 import CardTitle from "components/CardTitle";
 import CardContent from "components/CardContent";
+import SearchInput from "components/SearchInput";
 // 组件懒加载
 const LazyContent = lazy(() => delayForDemo(import('./components/LazyLoad/LazyContent')));
 // 避免重新渲染
@@ -412,6 +413,15 @@ function App() {
 			id,
 		})
 	}
+	// 非受控组件
+	const childrenValueRef =useRef('')
+	const handleQueryPropsChange = (query)=>{
+		// 父组件内定义一个方法，接收子组件传递的参数，这样其他父组件中的其他地方也能够使用这个query参数了
+		// 「问题」这里获取的值是上一次的值，不是最新的值？怎么解决这个问题呢？使用useRef
+		childrenValueRef.current = query
+		console.log('子组件的值：',query)
+		console.log('父组件的值：',childrenValueRef.current)
+	}
 	return (
 		<main
 			className="container"
@@ -671,6 +681,11 @@ function App() {
 					<CardContent>卡片内容</CardContent>
 				</Card>
 			</>
+			{/* 非受控组件：子组件内部进行逻辑的处理，父组件进行调用就可以获取到值了 */}
+			{/*	受控和非受控组件本质上都是子组件向父组件传递数据的过程，区别在于受控组件不在子组件内部进行逻辑处理，非受控组件则相反 */}
+			<SearchInput
+				onChange={handleQueryPropsChange}
+			/>
 		</main>
 	);
 }

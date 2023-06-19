@@ -831,14 +831,23 @@ function NoteBook(){
 	const [searchTerm, setSearchTerm] = useState("");
 	const [error,setError] = useState(null);
 
-	async function getNotes(params) {
+	// controller 用于取消请求
+	async function getNotes(params,controller) {
 		setLoading(true);
+
+		// setTimeout(()=>{
+		// 	controller.abort();
+		// })
+
 		let url = '/api/notes';
 		if(params){
 			// url += `?${new URLSearchParams({term:params})}`;
 			url += `?term=${params}`;
 		}
-		const res = await fetch(url);
+		// fetch方法的第二个参数添加signal属性，传递controller.signal
+		const res = await fetch(url,{
+			signal: controller.signal
+		});
 		if(!res.ok){
 			setError(await res.json() )
 		}else {
@@ -848,7 +857,14 @@ function NoteBook(){
 		setLoading(false);
 	}
 	useEffect(() => {
-		getNotes();
+		// 首先定义一个控制器 controller
+		const controller = new AbortController();
+		// 传递给请求数据方法（这里不需要传递参数params 获取数据
+		getNotes(null,controller);
+
+		return ()=>{
+			controller.abort();
+		}
 	}, []);
 	function handleSearch(event){
 		setSearchTerm(event.target.value)

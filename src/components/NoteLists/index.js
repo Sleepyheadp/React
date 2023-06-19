@@ -2,7 +2,6 @@ import React from "react";
 import "./style.css";
 
 function NoteList({ notes }) {
-  console.log('props-notes',notes)
   return (
     <div className="noteList">
       {notes.length === 0 ?

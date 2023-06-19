@@ -31,6 +31,9 @@ import Button from "./components/Button";
 import useWindowSize from "./hooks/useWindowSize";
 import ResponsiveContent from "./components/ResponsiveContent";
 import useBreakPoint from "./hooks/useBreakPoint";
+import SearchNote from "./components/SearchNote";
+import NoteBookList from "./components/NoteLists";
+import AddNote from "./components/AddNote";
 // 组件懒加载
 const LazyContent = lazy(() => delayForDemo(import('./components/LazyLoad/LazyContent')));
 // 避免重新渲染
@@ -277,27 +280,24 @@ function App() {
 		setDateTime(new Date())
 	}
 	useEffect(()=>{
-		const id = setInterval(()=> {
-			updateTime();
-		},1000)
-		console.log('updateId:',id)
-		// 这里为什么要return一个函数呢？
-		// 因为useEffect的第一个参数是一个函数，这个函数会在组件卸载的时候执行
-		// 但是我们这里的函数是一个定时器，如果不清除，那么定时器会一直执行下去
-		// 所以我们需要在组件卸载的时候清除定时器
+		updateTime();
+		// const id = setInterval(()=> {
+
+		// },1000)
 		return()=> {
 			clearInterval(id)
-			console.log('清理了id为'+ id +'的定时器')
 		}
 	},[])
 
 	// useEffect 解决
 	const [seconds,setSeconds] = useState(0)
 	useEffect(()=>{
-		const id = setInterval(()=>{
-			// 核心代码，使用箭头函数的形式，在内部对state进行修改
-			setSeconds((prev) => prev + 1)
-		},1000)
+		setSeconds((prev) => prev + 1)
+		// 影响了后续的useEffect
+		// const id = setInterval(()=>{
+		// 	// 核心代码，使用箭头函数的形式，在内部对state进行修改
+		//
+		// },1000)
 		console.log('创建了id',id)
 		return ()=>{
 			console.log('清除了id',id)
@@ -333,11 +333,15 @@ function App() {
 		)
 	})
 	// 条件渲染的另一种形式
-	const [userCapoo,setUserCapoo] = useState()
+	const [userCapoo,setUserCapoo] = useState('')
 	useEffect(()=>{
-		setTimeout(()=>{
+		const id = setTimeout(()=>{
 			setUserCapoo('Capoo-条件渲染的另一种形式')
 		},1000)
+		return ()=>{
+			// 清理副作用
+			clearTimeout(id)
+		}
 	},[])
 	// if(!userCapoo){
 	// 	return <div>loading......</div>
@@ -400,7 +404,7 @@ function App() {
 				type:'add',
 				id:noteId++,
 				note
-			})
+	 		})
 			// // 点击完'添加笔记'后，清空输入框的值
 			setNote('')
 		}
@@ -705,6 +709,8 @@ function App() {
 			</>
 			{/* 在不同组件中复用自定义Hooks	*/}
 			<ResponsiveContent/>
+			{/* 笔记本案例：fetch发送GET请求，添加笔记，搜索笔记，遍历展示笔记 */}
+			<NoteBook/>
 		</main>
 	);
 }
@@ -780,7 +786,8 @@ function HandleError(){
 			let responseError;
 			responseError = {status: 404, message: 'Not Found'};
 			// 主动抛出错误 场景演示
-			throw responseError
+			// throw responseError
+			setError(responseError)
 		}catch(error){
 			setError(error)
 		}
@@ -816,5 +823,31 @@ function delayForDemo(promise) {
 	return new Promise(resolve => {
 		setTimeout(resolve, 2000);
 	}).then(() => promise);
+}
+// fetch，笔记本案例：展示列表，搜索笔记，添加笔记功能
+function NoteBook(){
+	const [notes, setNotes] = useState([]);
+	const [loading, setLoading] = useState(false);
+	async function getNotes() {
+		setLoading(true);
+		const res = await fetch("http://localhost:8080/notes");
+		const data = await res.json();
+		setNotes(data);
+		setLoading(false);
+	}
+	useEffect(() => {
+		getNotes();
+		console.log("notes", notes);
+	}, []);
+	return (
+		<main className="container">
+			<div>
+				<h1>我的笔记本</h1>
+				<SearchNote />
+				{loading === true ? <p>加载中...</p> : <NoteBookList notes={notes} />}
+				<AddNote notes={notes}/>
+			</div>
+		</main>
+	);
 }
 export default App;

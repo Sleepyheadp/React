@@ -1,5 +1,5 @@
 .container {
-  width: 400px;
+  max-width: 600px;
   padding-top: 24px;
   display: grid;
   row-gap: 24px;

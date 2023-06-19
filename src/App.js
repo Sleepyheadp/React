@@ -34,6 +34,7 @@ import useBreakPoint from "./hooks/useBreakPoint";
 import SearchNote from "./components/SearchNote";
 import NoteBookList from "./components/NoteLists";
 import AddNote from "./components/AddNote";
+import request from "./utils/request";
 // 组件懒加载
 const LazyContent = lazy(() => delayForDemo(import('./components/LazyLoad/LazyContent')));
 // 避免重新渲染
@@ -832,7 +833,7 @@ function NoteBook(){
 	const [error,setError] = useState(null);
 
 	// controller 用于取消请求
-	async function getNotes(params,controller) {
+	async function getNotes(params) {
 		setLoading(true);
 
 		// setTimeout(()=>{
@@ -844,17 +845,14 @@ function NoteBook(){
 			// url += `?${new URLSearchParams({term:params})}`;
 			url += `?term=${params}`;
 		}
-		// fetch方法的第二个参数添加signal属性，传递controller.signal
-		const res = await fetch(url,{
-			signal: controller.signal
-		});
-		if(!res.ok){
-			setError(await res.json() )
-		}else {
-			const data = await res.json();
+		try {
+			const data = await request(url);
 			setNotes(data);
+		} catch (e) {
+			setError(e.error);
+		} finally {
+			setLoading(false);
 		}
-		setLoading(false);
 	}
 	useEffect(() => {
 		// 首先定义一个控制器 controller
@@ -871,14 +869,7 @@ function NoteBook(){
 		getNotes(event.target.value)
 	}
 	async function handleAdd(note){
-		const res = await fetch('/api/notes',{
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body:JSON.stringify(note),
-		})
-		const data = res.json()
+		const data = await request('/api/notes','POST',note)
 		setNotes([...notes,data])
 	}
 	return (

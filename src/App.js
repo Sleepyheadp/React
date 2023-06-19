@@ -34,7 +34,8 @@ import useBreakPoint from "./hooks/useBreakPoint";
 import SearchNote from "./components/SearchNote";
 import NoteBookList from "./components/NoteLists";
 import AddNote from "./components/AddNote";
-import request from "./utils/request";
+// import request from "./utils/request";
+import axios from "axios";
 // 组件懒加载
 const LazyContent = lazy(() => delayForDemo(import('./components/LazyLoad/LazyContent')));
 // 避免重新渲染
@@ -846,22 +847,25 @@ function NoteBook(){
 			url += `?term=${params}`;
 		}
 		try {
-			const data = await request(url);
-			setNotes(data);
+			axios.get(url).then(res=>{
+				setNotes(res.data);
+			})
 		} catch (e) {
-			setError(e.error);
+			if(e.response?.data){
+				setError(e.response.data);
+			}
 		} finally {
 			setLoading(false);
 		}
 	}
 	useEffect(() => {
 		// 首先定义一个控制器 controller
-		const controller = new AbortController();
+		// const controller = new AbortController();
 		// 传递给请求数据方法（这里不需要传递参数params 获取数据
-		getNotes(null,controller);
+		getNotes();
 
 		return ()=>{
-			controller.abort();
+			// controller.abort();
 		}
 	}, []);
 	function handleSearch(event){
@@ -869,8 +873,13 @@ function NoteBook(){
 		getNotes(event.target.value)
 	}
 	async function handleAdd(note){
-		const data = await request('/api/notes','POST',note)
-		setNotes([...notes,data])
+		const res = await axios.post('/api/notes',note,{
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization:'Bearer JwtToken',
+			}
+		})
+		setNotes([...notes,res.data])
 	}
 	return (
 		<main className="container">

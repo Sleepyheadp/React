@@ -849,13 +849,24 @@ function NoteBook(){
 		setSearchTerm(event.target.value)
 		getNotes(event.target.value)
 	}
+	async function handleAdd(note){
+		const res = await fetch('http://localhost:8080/notes',{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body:JSON.stringify(note),
+		})
+		const data = res.json()
+		setNotes([...notes,data])
+	}
 	return (
 		<main className="container">
 			<div>
 				<h1>我的笔记本</h1>
 				<SearchNote notes={notes} searchTerm={searchTerm} onChange={handleSearch} />
 				{loading === true ? <p>加载中...</p> : <NoteBookList notes={notes} />}
-				<AddNote/>
+				<AddNote onAddNote={handleAdd}/>
 			</div>
 		</main>
 	);

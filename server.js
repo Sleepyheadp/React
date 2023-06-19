@@ -23,14 +23,15 @@ app.use(function (req, res, next) {
 
 // GET /notes?term=  search notes by content
 app.get("/notes", (req, res) => {
-  const term = req.query.term;
-  if (term) {
-    const filteredNotes = notes.filter((note) => note.content.includes(term));
-    res.json(filteredNotes);
-  } else {
-    res.json(notes);
-  }
-  // res.status(500).json({ message: "加载笔记列表出错" });
+  // const term = req.query.term;
+  // if (term) {
+  //   const filteredNotes = notes.filter((note) => note.content.includes(term));
+  //   res.json(filteredNotes);
+  // } else {
+  //   res.json(notes);
+  // }
+  // 抛出异常：处理错误
+  res.status(500).json({ message: "加载笔记列表出错" });
 });
 
 app.post("/notes", (req, res) => {

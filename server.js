@@ -13,7 +13,7 @@ const notes = [
 
 // enable CORS
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "http:localhost");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
@@ -23,15 +23,15 @@ app.use(function (req, res, next) {
 
 // GET /notes?term=  search notes by content
 app.get("/notes", (req, res) => {
-  // const term = req.query.term;
-  // if (term) {
-  //   const filteredNotes = notes.filter((note) => note.content.includes(term));
-  //   res.json(filteredNotes);
-  // } else {
-  //   res.json(notes);
-  // }
+  const term = req.query.term;
+  if (term) {
+    const filteredNotes = notes.filter((note) => note.content.includes(term));
+    res.json(filteredNotes);
+  } else {
+    res.json(notes);
+  }
   // 抛出异常：处理错误
-  res.status(500).json({ message: "加载笔记列表出错" });
+  // res.status(500).json({ message: "加载笔记列表出错" });
 });
 
 app.post("/notes", (req, res) => {

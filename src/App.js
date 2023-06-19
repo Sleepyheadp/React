@@ -828,24 +828,34 @@ function delayForDemo(promise) {
 function NoteBook(){
 	const [notes, setNotes] = useState([]);
 	const [loading, setLoading] = useState(false);
-	async function getNotes() {
+	const [searchTerm, setSearchTerm] = useState("");
+
+	async function getNotes(params) {
 		setLoading(true);
-		const res = await fetch("http://localhost:8080/notes");
+		let url = 'http://localhost:8080/notes';
+		if(params){
+			// url += `?${new URLSearchParams({term:params})}`;
+			url += `?term=${params}`;
+		}
+		const res = await fetch(url);
 		const data = await res.json();
 		setNotes(data);
 		setLoading(false);
 	}
 	useEffect(() => {
 		getNotes();
-		console.log("notes", notes);
 	}, []);
+	function handleSearch(event){
+		setSearchTerm(event.target.value)
+		getNotes(event.target.value)
+	}
 	return (
 		<main className="container">
 			<div>
 				<h1>我的笔记本</h1>
-				<SearchNote />
+				<SearchNote notes={notes} searchTerm={searchTerm} onChange={handleSearch} />
 				{loading === true ? <p>加载中...</p> : <NoteBookList notes={notes} />}
-				<AddNote notes={notes}/>
+				<AddNote/>
 			</div>
 		</main>
 	);

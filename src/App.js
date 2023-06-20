@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useId, useRef, useState} from "react";
 import "./App.css";
 import VideoPlayer from "./components/VideoPlayer";
 import Sea from "./assets/videos/sea.mp4";
@@ -10,6 +10,8 @@ function App() {
 			<AddOnce />
 			{/* React通过useRef操作DOM实现视频的播放和暂停*/}
 			<VideoPlayerBox/>
+			{/*	useId:给标签添加唯一Id*/}
+			<AddUserId/>
 		</div>
 	)
 }
@@ -24,7 +26,7 @@ function AddOnce(){
 		</>
 	)
 }
-
+// React操作DOM案例：视频播放器
 function VideoPlayerBox(){
 	// 播放状态
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -35,7 +37,7 @@ function VideoPlayerBox(){
 	// videoRef.current.play()
 	useEffect(()=>{
 		videoRef.current.play()
-		console.log(videoRef.current.load)
+		// console.log(videoRef.current.load)
 		setIsPlaying(true)
 	},[])
 	// 播放
@@ -58,6 +60,16 @@ function VideoPlayerBox(){
 			<button onClick={handlePlay}>
 				{isPlaying ? <PauseComp/> : <PlayComp/>}
 			</button>
+		</>
+	)
+}
+// 给元素设置唯一id useId
+function AddUserId(){
+	const userNameId = useId();
+	return (
+		<>
+			<label htmlFor={userNameId + 'input'}>用户名</label>
+			<input type="text" id={userNameId + 'label'} />
 		</>
 	)
 }

@@ -88,15 +88,14 @@ function ProductList(){
 
 	const [isDark, setIsDark] = useState(true);
 
-	function addProduct() {
+	const addProduct = useCallback(()=>{
 		const newProduct = {
 			id: Math.random(),
 			name: `产品 ${products.length + 1}`,
 			price: Math.floor(Math.random() * 10) + 1,
 		};
-
-		setProducts([...products, newProduct]);
-	}
+		setProducts((prevProducts)=>[...prevProducts, newProduct]);
+	},[products])
 	// 改变主题的时候又使得子组件的渲染，因为子组件的props发生了变化，
 	// 主题改变的时候，handleCheckout重新创建和销毁，ProductListing重新渲染
 	// function handleCheckout(){

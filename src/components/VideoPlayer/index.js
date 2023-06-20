@@ -1,12 +1,17 @@
 import Sea from "../../assets/videos/sea.mp4";
 import { ReactComponent as PlayComp } from "../../assets/images/play.svg";
 import { ReactComponent as PauseComp } from "../../assets/images/pause.svg";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 function VideoPlayer(){
   // 播放状态
   const [isPlaying, setIsPlaying] = useState(false);
   // 播放器DOM
   const videoRef = useRef();
+
+  useEffect(()=>{
+    videoRef.current.play()
+    setIsPlaying(true)
+  },[])
   // 播放
   function  handlePlay(){
     // 获取DOM
@@ -23,7 +28,8 @@ function VideoPlayer(){
   }
   return (
     <>
-      <video ref={videoRef} src={Sea} width='320' controls></video>
+      {/*视频有声音的话，浏览器默认视频关闭状态*/}
+      <video ref={videoRef} src={Sea} width='320' muted controls></video>
       <button onClick={handlePlay}>
         {isPlaying? <PauseComp /> : <PlayComp />}
       </button>

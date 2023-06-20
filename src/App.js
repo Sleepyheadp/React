@@ -1,4 +1,4 @@
-import {useEffect, useId, useRef, useState} from "react";
+import {useCallback, useEffect, useId, useRef, useState} from "react";
 import "./App.css";
 import VideoPlayer from "./components/VideoPlayer";
 import Sea from "./assets/videos/sea.mp4";
@@ -97,11 +97,20 @@ function ProductList(){
 
 		setProducts([...products, newProduct]);
 	}
+	// 改变主题的时候又使得子组件的渲染，因为子组件的props发生了变化，
+	// 主题改变的时候，handleCheckout重新创建和销毁，ProductListing重新渲染
+	// function handleCheckout(){
+	// 	console.log('结算')
+	// }
+	// 通过useCallback优化
+	const handleCheckout = useCallback(() => {
+		console.log("结算");
+	},[products]);
 
 	return (
 			<div className={isDark ? "" : "pink"}>
 				<h1>产品列表</h1>
-				<ProductListing products={products} />
+				<ProductListing products={products} onCheckout={handleCheckout} />
 				<button onClick={addProduct}>添加产品</button>
 				<label htmlFor="toggleTheme">
 					改变主题{" "}

@@ -2,7 +2,7 @@ import {memo, useMemo} from "react";
 import Product from "../Product";
 import "./style.css";
 
-function ProductListing({ products }) {
+function ProductListing({ products,onCheckout }) {
   console.log('重新渲染了...')
   const totalPrice = useMemo(() => {
     console.log("计算总价");
@@ -15,6 +15,7 @@ function ProductListing({ products }) {
         <Product key={product.id} product={product} />
       ))}
       <div className="product_total">总计: ￥{totalPrice}</div>
+      <div onClick={onCheckout}>结算</div>
     </div>
   );
 }

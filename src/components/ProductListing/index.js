@@ -1,8 +1,9 @@
-import { useMemo } from "react";
+import {memo, useMemo} from "react";
 import Product from "../Product";
 import "./style.css";
 
 function ProductListing({ products }) {
+  console.log('重新渲染了...')
   const totalPrice = useMemo(() => {
     console.log("计算总价");
     return products.reduce((sum, product) => sum + product.price, 0);
@@ -17,5 +18,4 @@ function ProductListing({ products }) {
     </div>
   );
 }
-
-export default ProductListing;
+export default memo(ProductListing);

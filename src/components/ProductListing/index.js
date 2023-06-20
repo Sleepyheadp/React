@@ -1,9 +1,13 @@
+import { useMemo } from "react";
 import Product from "../Product";
 import "./style.css";
 
 function ProductListing({ products }) {
-  const totalPrice = products.reduce((sum, product) => sum + product.price, 0);
-  console.log("计算总价");
+  const totalPrice = useMemo(() => {
+    console.log("计算总价");
+    return products.reduce((sum, product) => sum + product.price, 0);
+  }, [products]);
+
   return (
     <div>
       {products.map((product) => (

@@ -7,7 +7,9 @@ function VideoPlayer(){
   const [isPlaying, setIsPlaying] = useState(false);
   // 播放器DOM
   const videoRef = useRef();
-
+  //直接在组件中调用没有效果，因为这个时候DOM还没有渲染出来，需要在useEffect中调用，
+  // 也就是在组件渲染完成之后调用
+  // videoRef.current.play()
   useEffect(()=>{
     videoRef.current.play()
     setIsPlaying(true)

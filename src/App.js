@@ -35,6 +35,7 @@ function VideoPlayerBox(){
 	// videoRef.current.play()
 	useEffect(()=>{
 		videoRef.current.play()
+		console.log(videoRef.current.load)
 		setIsPlaying(true)
 	},[])
 	// 播放

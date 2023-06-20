@@ -1,9 +1,12 @@
 import { useState } from "react";
 import "./App.css";
+import VideoPlayer from "./components/VideoPlayer";
 function App() {
 	return (
 		<div className="container">
 			<AddOnce />
+			{/* React通过useRef操作DOM实现视频的播放和暂停*/}
+			<VideoPlayer />
 		</div>
 	)
 }

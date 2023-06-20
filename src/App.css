@@ -1,9 +1,9 @@
 .container {
-  max-width: 600px;
-  padding-top: 24px;
+  height: 100vh;
   display: grid;
-  row-gap: 24px;
-  margin: 0 auto 400px;
+  place-content: center;
+  background-color: hsl(240deg, 10%, 20%);
+  color: white;
 }
 
 .publishBlog {

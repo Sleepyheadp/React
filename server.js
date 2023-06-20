@@ -22,7 +22,7 @@ app.use(function (req, res, next) {
 });
 
 // GET /notes?term=  search notes by content
-app.get("/notes", (req, res) => {
+app.get("/api/notes", (req, res) => {
   const term = req.query.term;
   if (term) {
     const filteredNotes = notes.filter((note) => note.content.includes(term));
@@ -33,13 +33,14 @@ app.get("/notes", (req, res) => {
   // 抛出异常：处理错误
   // res.status(500).json({ message: "加载笔记列表出错" });
 });
-
-app.post("/notes", (req, res) => {
+app.post("/api/notes", (req, res) => {
   const note = req.body;
   note.id = notes.length + 1;
   notes.push(note);
   res.json(note);
 });
+
+app.use(express.static("build"))
 
 // listen on port 8080
 app.listen(8080, () =>

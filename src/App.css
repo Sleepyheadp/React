@@ -32,5 +32,14 @@
 .redFont {
   color: red;
 }
+.pink {
+  background-color: pink;
+}
+.containerProduct{
+  display: grid;
+  place-content: center;
+  background-color: hsl(240deg, 10%, 20%);
+  color: white;
+}
 
 

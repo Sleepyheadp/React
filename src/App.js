@@ -4,6 +4,7 @@ import VideoPlayer from "./components/VideoPlayer";
 import Sea from "./assets/videos/sea.mp4";
 import { ReactComponent as PlayComp } from "./assets/images/play.svg";
 import { ReactComponent as PauseComp } from "./assets/images/pause.svg";
+import ProductListing from "./components/ProductListing";
 function App() {
 	return (
 		<div className="container">
@@ -12,6 +13,8 @@ function App() {
 			<VideoPlayerBox/>
 			{/*	useId:给标签添加唯一Id*/}
 			<AddUserId/>
+			{/*	性能优化 */}
+			<ProductList/>
 		</div>
 	)
 }
@@ -23,6 +26,7 @@ function AddOnce(){
 		<>
 			<h1>{count}</h1>
 			<button onClick={()=> setCount(count + 1)}>增加</button>
+			{/* 性能优化	*/}
 		</>
 	)
 }
@@ -72,5 +76,44 @@ function AddUserId(){
 			<input type="text" id={userNameId + 'label'} />
 		</>
 	)
+}
+// useMemo的使用：避免重复渲染
+// 案例：点击切换，主题更新时，产品列表数据也会重新渲染，导致性能浪费
+function ProductList(){
+	const [products, setProducts] = useState([
+		{ id: 1, name: "苹果", price: 1 },
+		{ id: 2, name: "香蕉", price: 5 },
+		{ id: 3, name: "菠萝", price: 10 },
+	]);
+
+	const [isDark, setIsDark] = useState(true);
+
+	function addProduct() {
+		const newProduct = {
+			id: Math.random(),
+			name: `产品 ${products.length + 1}`,
+			price: Math.floor(Math.random() * 10) + 1,
+		};
+
+		setProducts([...products, newProduct]);
+	}
+
+	return (
+			<div className={isDark ? "" : "pink"}>
+				<h1>产品列表</h1>
+				<ProductListing products={products} />
+				<button onClick={addProduct}>添加产品</button>
+				<label htmlFor="toggleTheme">
+					改变主题{" "}
+					<input
+						id="toggleTheme"
+						type="checkbox"
+						checked={isDark}
+						value={isDark}
+						onChange={(e) => setIsDark(e.target.checked)}
+					/>
+				</label>
+			</div>
+	);
 }
 export default App;

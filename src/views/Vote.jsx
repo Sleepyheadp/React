@@ -4,6 +4,7 @@ import VoteMain from './VoteMain';
 import VoteFooter from './VoteFooter';
 import {connect} from 'react-redux';
 const Vote = function Vote(props) {
+    console.log(props)
     let {supNum,oppNum} = props;
     return <div className="vote-box">
         <div className="header">

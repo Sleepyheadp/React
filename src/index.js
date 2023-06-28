@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-// react-router-dom@6-CodingStartup
+// start react-router-dom@6-CodingStartup
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
-import HomePage from './views/router@6demo2/HomePage'
-import AboutPage from './views/router@6demo2/AboutPage'
+import HomePage from './views/router@6demo/HomePage'
+import AboutPage from './views/router@6demo/AboutPage'
 import Root from './Root'
-import PostPage from "./views/router@6demo2/PostPage";
-import ViewPostPage from "./views/router@6demo2/ViewPostPage";
+import PostPage from "./views/router@6demo/PostPage";
+import ViewPostPage from "./views/router@6demo/ViewPostPage";
+// end react-router-dom@6-CodingStartup
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 
 const router = createBrowserRouter([
   {

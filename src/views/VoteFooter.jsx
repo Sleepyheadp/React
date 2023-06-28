@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 const VoteFooter = function VoteFooter(props) {
   let {support,oppose} = props;
     return <div className="footer">
-        <Button type="primary" onClick={support}>支持</Button>
+        <Button onClick={support}>支持</Button>
         <Button type="primary" danger onClick={oppose}>反对</Button>
     </div>;
 };

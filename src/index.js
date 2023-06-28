@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
+import App from './App';
+// react-router-dom@6-CodingStartup
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import HomePage from './views/router@6demo2/HomePage'
 import AboutPage from './views/router@6demo2/AboutPage'
@@ -9,7 +10,7 @@ import Root from './Root'
 import PostPage from "./views/router@6demo2/PostPage";
 import ViewPostPage from "./views/router@6demo2/ViewPostPage";
 const root = ReactDOM.createRoot(document.getElementById('root'));
-// react-router-dom@6-codingStartUp
+
 
 const router = createBrowserRouter([
   {
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
 ])
 root.render(
   <React.StrictMode>
-    {/*<App />*/}
+    <App />
     <RouterProvider router={router}></RouterProvider>
   </React.StrictMode>
 );

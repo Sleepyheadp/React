@@ -1,6 +1,6 @@
 import {Outlet} from "react-router";
 import {NavLink} from "react-router-dom";
-const Root = ()=>{
+const Home = ()=>{
   return (
     <div className="min-h-screen flex justify-center items-center flex-col max-w-5xl mx-auto">
       <ul className="flex bg-slate-200 rounded px-8 py-4 text-lg w-full gap-x-8 justify-center">
@@ -34,4 +34,4 @@ const Root = ()=>{
     </div>
   )
 }
-export default Root;
+export default Home;

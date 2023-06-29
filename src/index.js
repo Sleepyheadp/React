@@ -1,21 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+// import App from './App';
 // start react-router-dom@6-CodingStartup
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 import HomePage from './views/router@6demo/HomePage'
 import AboutPage from './views/router@6demo/AboutPage'
-import Root from './Root'
+import Home from './views/router@6demo/Home' // 首页内容（不是路由
 import PostPage from "./views/router@6demo/PostPage";
 import ViewPostPage from "./views/router@6demo/ViewPostPage";
 // end react-router-dom@6-CodingStartup
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 const router = createBrowserRouter([
   {
     path:'/',
-    element:<Root />,
+    element:<Home />,
     // 下面这些都属于首页的子路由，在页面中通过<Outlet />渲染
     children:[
       {path:'/',element:<HomePage />},
@@ -52,7 +51,7 @@ const router = createBrowserRouter([
 ])
 root.render(
   <React.StrictMode>
-    <App />
+    {/*<App />*/}
     <RouterProvider router={router}></RouterProvider>
   </React.StrictMode>
 );

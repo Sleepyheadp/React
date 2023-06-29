@@ -22,7 +22,9 @@ import {withRouter} from 'react-router-dom';
 // 类组件
 class HomeHead extends React.Component{
   render(){
-    console.log('props',this.props);
+    // 这里的this.props就是路由信息，怎么获取的？
+    // 通过withRouter高阶组件包裹，就可以获取到路由信息
+    // console.log('props',this.props);
     return (
     <div>
       <Link to='/'><Button>A</Button></Link>

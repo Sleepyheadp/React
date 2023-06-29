@@ -44,7 +44,7 @@ const routes =[
     component: lazy(() => import('../views/B.js')),
   },
   {
-    path: '/c',
+    path: '/c/:name?/:id?',
     name: 'c',
     component: lazy(() => import('../views/C.js')),
   },

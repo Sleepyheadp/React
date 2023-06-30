@@ -29,7 +29,7 @@ const createRoute = (routes) => {
 export default function RouterView(){
 	return (
 		// 为什么通过Suspense包裹Routes，因为Routes中的Route是异步加载的，所以需要Suspense包裹
-		<Suspense>
+		<Suspense fallback={<div>loading...</div>}>
 			{/*// v6版本的路由，不需要使用Switch，直接使用Routes即可，Routes包裹Route渲染路由*/}
 			<Routes>{createRoute(routes)}</Routes>
 		</Suspense>

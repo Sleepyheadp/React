@@ -1,7 +1,16 @@
 import "./App.css";
-
+import {HashRouter} from 'react-router-dom'
+import RouterView from "./router/index";
+import Home from './components/Home'
 function App() {
-	return <div className="App">App</div>;
+	return (
+		<>
+			<HashRouter>
+				<Home></Home>
+				<RouterView></RouterView>
+			</HashRouter>
+		</>
+	);
 }
 
 export default App;

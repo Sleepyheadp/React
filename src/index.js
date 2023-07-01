@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-// import App from './App';
-// start react-router-dom@6-CodingStartup
-import {createBrowserRouter,RouterProvider} from 'react-router-dom'
+import App from './App';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import HomePage from './views/router@6demo/HomePage'
 import AboutPage from './views/router@6demo/AboutPage'
 import Home from './views/router@6demo/Home' // 首页内容（不是路由
 import PostPage from "./views/router@6demo/PostPage";
 import ViewPostPage from "./views/router@6demo/ViewPostPage";
-// end react-router-dom@6-CodingStartup
-const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
   {
     path:'/',
@@ -49,9 +46,10 @@ const router = createBrowserRouter([
     ]
   },
 ])
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    {/*<App />*/}
-    <RouterProvider router={router}></RouterProvider>
-  </React.StrictMode>
+    <React.StrictMode>
+      <App />
+      {/*<RouterProvider router={router}></RouterProvider>*/}
+    </React.StrictMode>
 );

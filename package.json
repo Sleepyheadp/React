@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@reduxjs/toolkit": "1.9.5",
     "@svgr/webpack": "8.0.1",
@@ -15,7 +14,6 @@
     "antd-mobile-icons": "^0.3.0",
     "axios": "1.4.0",
     "babel-jest": "29.5.0",
-    "babel-loader": "^8.2.3",
     "babel-plugin-named-asset-import": "^0.3.8",
     "babel-preset-react-app": "^10.0.1",
     "bfj": "^7.0.2",
@@ -79,13 +77,13 @@
     "terser-webpack-plugin": "5.3.9",
     "web-vitals": "3.3.2",
     "webpack": "5.88.0",
-    "webpack-dev-server": "^4.6.0",
+    "webpack-dev-server": "^4.15.1",
     "webpack-manifest-plugin": "5.0.0",
     "workbox-webpack-plugin": "7.0.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build":"webpack",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
@@ -159,5 +157,11 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "babel-loader": "^9.1.2",
+    "webpack-cli": "^5.1.4"
   }
 }

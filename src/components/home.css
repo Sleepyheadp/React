@@ -1,0 +1,10 @@
+.active{
+    width: 40px;
+    height: 32px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ccc;
+}

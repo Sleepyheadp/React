@@ -8,6 +8,7 @@ import AboutPage from './views/router@6demo/AboutPage'
 import Home from './views/router@6demo/Home' // 首页内容（不是路由
 import PostPage from "./views/router@6demo/PostPage";
 import ViewPostPage from "./views/router@6demo/ViewPostPage";
+import Demo from './views/Demo'
 const router = createBrowserRouter([
   {
     path:'/',
@@ -51,5 +52,6 @@ root.render(
     <React.StrictMode>
       <App />
       {/*<RouterProvider router={router}></RouterProvider>*/}
+      <Demo />
     </React.StrictMode>
 );

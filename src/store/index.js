@@ -1,5 +1,11 @@
-import {createStore} from 'redux';
+import {createStore,applyMiddleware} from 'redux';
 import reducer from './reducers';
+import reduxLogger from 'redux-logger';
+import reduxPromise from 'redux-promise';
+import reduxThunk from 'redux-thunk';
 // 2、创建store对象
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  applyMiddleware(reduxLogger, reduxPromise, reduxThunk)
+  );
 export default store;

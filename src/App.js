@@ -7,7 +7,6 @@ import {ConfigProvider} from "antd";
 import Home from "./components/Home";
 import RouterView from './router'
 import {HashRouter} from "react-router-dom";
-import Task from "./views/Task";
 const App = function App() {
   return (
     <div>
@@ -17,7 +16,6 @@ const App = function App() {
             <Vote />
             <Home/>
             <RouterView/>
-            <Task/>
           </HashRouter>
         </Provider>
       </ConfigProvider>

@@ -8,6 +8,3 @@ export const VOTE_SUP = "VOTE_SUP";
 export const VOTE_OPP = "VOTE_OPP";
 export const PERSONAL_SUP = "PERSONAL_SUP";
 export const PERSONAL_INFO = "PERSONAL_INFO";
-export const TASK_LIST = "TASK_LIST";
-export const TASK_REMOVE = "TASK_REMOVE";
-export const TASK_UPDATE = "TASK_UPDATE";

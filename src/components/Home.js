@@ -5,7 +5,7 @@ import './home.css'
 const Home = ()=>{
   return (
     <div style={{display:'flex'}}>
-      <NavLink to='/a' activeClassName ='active'><Button>A</Button></NavLink>
+      <NavLink to='/a'><Button>A</Button></NavLink>
       <NavLink to='/b'><Button>B</Button></NavLink>
       <NavLink to='/c'><Button>C</Button></NavLink>
     </div>

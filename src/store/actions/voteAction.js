@@ -1,11 +1,22 @@
 import * as TYPES from "../action-types";
+const delay = (interval = 1000)=>{
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      resolve()
+    },interval)
+  })
+}
 const voteAction = {
-  support() {
-    return {
-      type: TYPES.VOTE_SUP
-    };
+  support(){
+    return async (dispatch)=>{
+      await delay();
+      dispatch({
+        type:TYPES.VOTE_SUP
+      })
+    }
   },
-  oppose() {
+  async oppose() {
+    await delay();
     return {
       type: TYPES.VOTE_OPP
     };

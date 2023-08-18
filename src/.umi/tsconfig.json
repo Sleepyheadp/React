@@ -27,7 +27,7 @@
         "src/.umi/*"
       ],
       "umi": [
-        "/Users/capoo/Documents/web/project_code/react/umi-myapp/node_modules/umi"
+        "/Users/capoo/Documents/web/project_code/react/umi/node_modules/umi"
       ],
       "umi/typings": [
         "src/.umi/typings"

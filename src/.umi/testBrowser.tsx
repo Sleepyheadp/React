@@ -3,14 +3,14 @@
 // DO NOT CHANGE IT MANUALLY!
 import React, { useEffect, useState } from 'react';
 import { ApplyPluginsType } from 'umi';
-import { renderClient, RenderClientOpts } from '/Users/capoo/Documents/web/project_code/react/umi-myapp/node_modules/@umijs/renderer-react';
+import { renderClient, RenderClientOpts } from '/Users/capoo/Documents/web/project_code/react/umi/node_modules/@umijs/renderer-react';
 import { createHistory } from './core/history';
 import { createPluginManager } from './core/plugin';
 import { getRoutes } from './core/route';
 import type { Location } from 'history';
 
-import '/Users/capoo/Documents/web/project_code/react/umi-myapp/src/global.less';
-import '/Users/capoo/Documents/web/project_code/react/umi-myapp/src/global.tsx';
+import '/Users/capoo/Documents/web/project_code/react/umi/src/global.less';
+import '/Users/capoo/Documents/web/project_code/react/umi/src/global.tsx';
 const publicPath = '/';
 const runtimePublicPath = false;
 

@@ -16,7 +16,7 @@ export async function getRoutes() {
 '6': React.lazy(() => import(/* webpackChunkName: "p__personal__personalOne" */'@/pages/personal/personalOne.tsx')),
 '7': React.lazy(() => import(/* webpackChunkName: "p__personal__personalTwo" */'@/pages/personal/personalTwo.tsx')),
 '8': React.lazy(() => import(/* webpackChunkName: "p__notfound" */'@/pages/notfound.tsx')),
-'@@/global-layout': React.lazy(() => import(/* webpackChunkName: "layouts__index" */'/Users/capoo/Documents/web/project_code/react/umi-myapp/src/layouts/index.tsx')),
+'@@/global-layout': React.lazy(() => import(/* webpackChunkName: "layouts__index" */'/Users/capoo/Documents/web/project_code/react/umi/src/layouts/index.tsx')),
 },
   };
 }

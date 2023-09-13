@@ -1,11 +1,4 @@
 .App {
   height: 100vh;
   background-color: #282c34;
-  color: aliceblue;
-}
-.item{
-  background-color: #282c34;
-  color: aliceblue;
-  border-bottom: 1px solid aliceblue;
-  padding:10px;
 }

@@ -7,7 +7,11 @@ function Fat() {
   return (
     <>
       <div>Fat</div>
-      <Son msg={msg} name={name} age={age} ></Son>
+      <Son msg={msg} name={name} age={age} >
+        <div>标题</div>
+        <div>内容</div>
+        <div>结尾</div>
+      </Son>
     </>
   )
 }

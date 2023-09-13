@@ -1,4 +1,4 @@
-import React,{useState,useCallback,createContext} from 'react'
+import React,{useState,useCallback} from 'react'
 import VoteMiddle  from  './VoteMiddle'
 import VoteFooter from './VoteFooter'
 import ThemeContext from "../utils/ThemeContext"
@@ -6,8 +6,8 @@ function Vote() {
   const [supportNum, setSupportNum] = useState(0)
   const [opposeNum, setOpposeNum] = useState(0)
   // context基于上下文通信
-  const [manager,setManager] = useState('capoo')
-  const [cost,setCost] = useState(1999)
+  const [manager] = useState('capoo')
+  const [cost] = useState(1999)
   const changeNum = useCallback((type)=>{
     if(type === 'support'){
       setSupportNum(supportNum + 1)

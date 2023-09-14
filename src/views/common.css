@@ -8,3 +8,9 @@
     color: blueviolet;
     font-size: 18px;
 }
+.box{
+    border: 1px solid #FFF;
+    width: max-content;
+    margin: 10px;
+    padding: 10px;
+}

@@ -378,7 +378,7 @@ function Demo() {
   const [note,setNote] = useState('')
   // useReducer：集中处理修改状态逻辑
   const [notes,dispatch] = useReducer(notesReducer,[])
-  let noteId = 0;
+  const [noteId,setNoteId] = useState(1);
   function notesReducer(notes,action){
     switch(action.type){
       case 'add': {
@@ -404,18 +404,16 @@ function Demo() {
     }else{
       dispatch({
         type:'add',
-        id:noteId++,
+        id:noteId,
         note
       })
-      // // 点击完'添加笔记'后，清空输入框的值
+      setNoteId((oldVal)=>oldVal + 1)
+      // 点击完'添加笔记'后，清空输入框的值
       setNote('')
     }
   }
   // 获取到state最新的值
   function handleNoteInput(e){
-    // setNote(()=>{
-    //   return e.target.value
-    // })
     setNote(e.target.value)
   }
   function deleteNoteById(id){

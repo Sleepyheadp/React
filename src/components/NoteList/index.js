@@ -5,7 +5,7 @@ function NoteList({ notes,onDelete }) {
     <div className="noteList">
       {notes.map((note) => (
         <p key={note.id}>
-          {note.note}{''}
+          {note.id}、{note.note}{''}
           <button onClick={()=>onDelete(note.id)} className='deletebtn'>删除</button>
         </p>
       ))}

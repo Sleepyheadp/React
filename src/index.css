@@ -39,6 +39,7 @@ textarea,
 button {
   outline: none;
   font-size: 1rem;
+  width: max-content;
 }
 
 img {

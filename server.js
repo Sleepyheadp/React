@@ -42,7 +42,7 @@ app.post("/api/notes", (req, res) => {
 
 app.use(express.static("build"))
 
-// listen on port 8080
-app.listen(8080, () =>
-  console.log("Server listening on http://localhost:8080")
+// listen on port
+app.listen(3002, () =>
+  console.log("Server listening on http://localhost:3002")
 );

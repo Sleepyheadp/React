@@ -1,10 +1,11 @@
 import {useCallback, useEffect, useId, useRef, useState} from "react";
-import "./App.css";
+// import "./App.css";
 import VideoPlayer from "./components/VideoPlayer";
 import Sea from "./assets/videos/sea.mp4";
 import { ReactComponent as PlayComp } from "./assets/images/play.svg";
 import { ReactComponent as PauseComp } from "./assets/images/pause.svg";
 import ProductListing from "./components/ProductListing";
+import Demo from "./demo"
 function App() {
 	return (
 		<div className="container">
@@ -15,6 +16,8 @@ function App() {
 			<AddUserId/>
 			{/*	性能优化 */}
 			<ProductList/>
+			{/* Demo */}
+			<Demo/>
 		</div>
 	)
 }

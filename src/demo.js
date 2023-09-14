@@ -56,7 +56,7 @@ const data = [
     content: "这是一篇关于学习 Redux 的文章",
   },
 ];
-function App() {
+function Demo() {
   const title = "欢迎使用本应用 🍂";
   const [id,setId] = useState(1)
   function getTitle() {
@@ -112,7 +112,7 @@ function App() {
   // 内联样式(1、定义一个样式对象，2、在元素中使用style属性
   const hStyle = {
     color: "#000",
-    fontSize: "32px",
+    fontSize: "18px",
   }
   // 更新组件状态
   const [count,setCount] = useState(0)
@@ -413,9 +413,10 @@ function App() {
   }
   // 获取到state最新的值
   function handleNoteInput(e){
-    setNote(()=>{
-      return e.target.value
-    })
+    // setNote(()=>{
+    //   return e.target.value
+    // })
+    setNote(e.target.value)
   }
   function deleteNoteById(id){
     dispatch({
@@ -438,9 +439,8 @@ function App() {
   return (
     <main
       className="container"
-      style={{border:'1px solid green'}}
     >
-      <h1
+      <div
         style={hStyle}
       >
         {/*只有0和NaN能正常渲染出来*/}
@@ -453,7 +453,7 @@ function App() {
         hello React!
         {title}
         {getTitle()}
-      </h1>
+      </div>
       <div className='publishBlog'>
 				<textarea
           onChange={handleChange}
@@ -712,7 +712,7 @@ function App() {
       {/* 在不同组件中复用自定义Hooks	*/}
       <ResponsiveContent/>
       {/* 笔记本案例：fetch发送GET请求，添加笔记，搜索笔记，遍历展示笔记 */}
-      <NoteBook/>
+      {/* <NoteBook/> */}
     </main>
   );
 }
@@ -894,4 +894,4 @@ function NoteBook(){
     </main>
   );
 }
-export default App;
+export default Demo;

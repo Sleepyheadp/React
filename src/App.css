@@ -1,9 +1,14 @@
 .container {
-  height: 100vh;
-  display: grid;
-  place-content: center;
-  background-color: hsl(240deg, 10%, 20%);
-  color: white;
+  max-width: 100%;
+  max-height: 100%;
+  height: max-content;
+  /* display: grid; */
+  /* place-content: center; */
+  /* background-color: hsl(240deg, 10%, 20%); */
+  /* color: white; */
+  display:flex;
+  flex-direction: column;
+  border:'1px solid green'
 }
 
 .publishBlog {

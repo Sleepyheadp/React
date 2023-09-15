@@ -11,11 +11,10 @@ export default class ClassAdd extends Component {
   render() {
     let { number} = this.state
     return (
-      <div className="useState box">
-        <h4>useState：类组件实现动态累加</h4>
+      <>
         <span>{number}</span>
-        <button onClick={this.addNumber}>累加</button>
-      </div>
+        <button onClick={this.addNumber}>类组件累加</button>
+      </>
     )
   }
 }

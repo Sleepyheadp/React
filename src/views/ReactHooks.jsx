@@ -114,6 +114,11 @@ export const ReactHooks = () => {
         <h4>useLayoutEffect:在DOM更新之后立即执行的钩子函数，适用于需要对DOM立即操作的场景</h4>
         <div className='boxInfo' ref={getDomInfoRef}>DOM信息:宽度{domInfo.width}，高度{domInfo.height}</div>
       </div>
+      <div className="useRef createRef box">
+        <h4>useRef/createRef都是用于获取组件的实例</h4>
+        <div>useRef:在函数组件中使用,createRef:在类组件中使用</div>
+        <div>forwardRef:实现ref转发「获取子组件内部的某个元素」</div>
+      </div>
     </div>
   )
 }

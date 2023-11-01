@@ -1,7 +1,7 @@
 import React from 'react'
 import Fat from "../components/Fat"
 import Vote from "../components/Vote"
-export function ReactCompDevBasic() {
+export default function ReactCompDevBasic() {
   return (
     <>
       <div className="item">

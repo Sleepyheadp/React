@@ -1,14 +1,20 @@
 import './App.css';
-import {ReactBasicGrammar} from "./views/ReactBasicGrammar";
-import {ReactCompDevBasic} from "./views/ReactCompDevBasic";
-import {ReactHooks} from './views/ReactHooks';
+import {Button} from 'antd';
+import {Link,HashRouter} from 'react-router-dom';
+import routes from './router/routes';
+import RouterView from './router/index';
 function App() {
   return (
-    <div className="App">
-      <ReactBasicGrammar></ReactBasicGrammar>
-      <ReactCompDevBasic></ReactCompDevBasic>
-      <ReactHooks></ReactHooks>
-    </div>
+    <HashRouter>
+      <div className="App">
+        <Link to='/'><Button>基础语法</Button></Link>
+        <Link to='/compdevbasic'><Button>组件化开发基础</Button></Link>
+        <Link to='/hooks'><Button>ReactHooks</Button></Link>
+      </div>
+      <div className="content">
+        <RouterView routes={routes}></RouterView>
+      </div>
+    </HashRouter>
   );
 }
 

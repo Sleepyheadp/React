@@ -1,5 +1,5 @@
 import "./common.css"
-export function ReactBasicGrammar(message) {
+export default function ReactBasicGrammar(message) {
   const styleOne = {
     color: "pink",
   }

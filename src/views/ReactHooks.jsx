@@ -1,7 +1,7 @@
 import React, {useState, useReducer,useEffect,useLayoutEffect,useRef} from 'react'
 import ClassAdd from "../components/ClassAdd"
 
-export const ReactHooks = () => {
+export default function ReactHooks(){
   // 组件之间state的共享
   const [note,setNote] = useState('')
   // useReducer：集中处理修改状态逻辑

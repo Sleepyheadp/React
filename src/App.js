@@ -10,13 +10,11 @@ function App() {
 		// 只要在HashRouter/BrowserRouter中渲染的组件都可以获取到路由信息
 		// 只有基于Route渲染的组件才能通过props获取到路由信息
 		<HashRouter>
-			<div className="App">
 				<HomeHead id={10} />
-			</div>
 			{/* 组件内容 */}
-			<div className="content">
+			{/*<div className="content">*/}
 				<RouterView routes={routes} />
-			</div>
+			{/*</div>*/}
 		</HashRouter>
 	);
 }

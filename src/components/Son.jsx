@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
+import {Button} from "antd";
 // (props)
 function Son({msg,name,age,children}) {
   let [count,setCount] = useState(0)
@@ -13,7 +14,7 @@ function Son({msg,name,age,children}) {
   return (
     <>
       {count}
-      <button onClick={addCount}>count++</button>
+      <Button onClick={addCount}>count++</Button>
       <div>Son:{msg},{name},{age}</div>
       <div>
         {children}

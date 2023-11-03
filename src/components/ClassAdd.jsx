@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import {Button} from "antd";
 export default class ClassAdd extends Component {
   state = {
     number:0
@@ -13,7 +14,7 @@ export default class ClassAdd extends Component {
     return (
       <>
         <span>{number}</span>
-        <button onClick={this.addNumber}>类组件累加</button>
+        <Button onClick={this.addNumber}>类组件累加</Button>
       </>
     )
   }

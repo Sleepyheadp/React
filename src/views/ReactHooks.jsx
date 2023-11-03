@@ -1,5 +1,6 @@
 import React, {useState, useReducer,useEffect,useLayoutEffect,useRef} from 'react'
 import ClassAdd from "../components/ClassAdd"
+import {Button, Input} from "antd";
 
 export default function ReactHooks(){
   // 组件之间state的共享
@@ -76,7 +77,7 @@ export default function ReactHooks(){
   useLayoutEffect(()=>{
     const width = getDomInfoRef.current.clientWidth
     const height = getDomInfoRef.current.clientHeight
-    console.log(width,height);
+    // console.log(width,height);
     setDomInfo({width,height})
   },[getDomInfoRef])
   return (
@@ -86,7 +87,7 @@ export default function ReactHooks(){
         <h4>useState：类组件实现动态累加</h4>
         <ClassAdd></ClassAdd>
         <div>
-          {number}<button onClick={()=>{ setNumber(number+1)}}>函数组件累加</button>
+          {number}<Button onClick={()=>{ setNumber(number+1)}}>函数组件累加</Button>
         </div>
       </div>
       <div className="useReducer box">
@@ -96,17 +97,17 @@ export default function ReactHooks(){
           {notes.map((note)=>{
             return <li key={note.id}>
               {note.id}、{note.note}
-              <button onClick={()=>deleteNoteById(note.id)}>删除待办</button>
+              <Button onClick={()=>deleteNoteById(note.id)}>删除待办</Button>
             </li>
           })}
         </ul>
-        <input
+        <Input
           type="text"
           placeholder={'请输入待办事项'}
           value={note}
           onChange={handleNoteInput}
         />
-        <button onClick={addNote}>添加待办</button>
+        <Button onClick={addNote}>添加待办</Button>
       </div>
       <div className="useEffect box">
         <h4>useEffect:在函数组件中使用生命周期函数，处理副作用（异步）</h4>

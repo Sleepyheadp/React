@@ -1,5 +1,6 @@
 import "./common.css"
-export default function ReactBasicGrammar(message) {
+import {Button, Checkbox} from "antd"
+export default function ReactBasicGrammar() {
   const styleOne = {
     color: "pink",
   }
@@ -32,7 +33,7 @@ export default function ReactBasicGrammar(message) {
         <h4>2、label&input搭配使用</h4>
         <div className="preference">
           <label htmlFor="cheese">Do you like cheese?</label>
-          <input type="checkbox" name="cheese" id="cheese" />
+          <Checkbox name="cheese" id="cheese" />
         </div>
         <h4>3、JSX表达式</h4>
         <div>
@@ -46,8 +47,8 @@ export default function ReactBasicGrammar(message) {
           ))}
         </div>
         <h4>4、合成事件</h4>
-        <button onClick={clickMe.bind(this,1,2)}>点击我</button>
-        {/* <button onClick={(e)=>clickMe(1,2,e)}>点击我</button> */}
+        <Button onClick={clickMe.bind(this,1,2)}>点击我</Button>
+        {/* <Button onClick={(e)=>clickMe(1,2,e)}>点击我</Button> */}
       </div>
     </>
   )

@@ -1,7 +1,4 @@
 .item{
-    background-color: #282c34;
-    color: aliceblue;
-    border-bottom: 1px solid aliceblue;
     padding:10px 10px 10px 20px;
 }
 .importClassName{
@@ -9,7 +6,7 @@
     font-size: 18px;
 }
 .box{
-    border: 1px solid #FFF;
+    border: 1px solid #000000;
     width: max-content;
     margin: 10px;
     padding: 10px;

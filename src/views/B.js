@@ -1,12 +1,18 @@
-import qs from 'qs'
+// import qs from 'qs'
+import {Button} from "antd";
 const B = (props) => {
 	const handleToC = () => {
 		// 要跳转到哪个页面就给谁传
 		const {navigate} = props;
-		// query传参
+		// query传参 路径传参
 		// navigate('/c/100/capoo')
 		// state传参
-		navigate('/c', {state: {id: 1, name: 'capoo'}})
+		navigate('/c', {
+			state: {
+				id: 1,
+				name: 'capoo'
+			}
+		})
 		// 第二种写法
 		navigate('/c',{
 			replace:true,
@@ -24,8 +30,8 @@ const B = (props) => {
 		// })
 	}
 	return <div>
-		<div>我是B组件</div>
-		<button onClick={handleToC}>跳转到C</button>
+		<div>路由B</div>
+		<Button onClick={handleToC}>跳转到C</Button>
 	</div>;
 };
 export default B;

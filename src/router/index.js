@@ -49,7 +49,7 @@ export default function RouterView() {
 		</Suspense>
 	);
 }
-// 创建withRouter（把一些路由的信息让非路由组件也能获取到）
+// 创建withRouter（一些路由的信息让非路由组件也能获取到）
 export const withRouter = (Component) => {
 	return function HOC(props) {
 		// 提前获取路由信息，作为属性传递给Component

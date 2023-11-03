@@ -16,7 +16,7 @@ const C = ()=>{
   return (
     <div>
       <h1>C</h1>
-      <p>{useLocation().state.name}:{useLocation().state.age}</p>
+      <p>{useLocation().state?.name}:{useLocation().state?.age}</p>
     </div>
   )
 }

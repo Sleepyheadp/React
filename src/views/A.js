@@ -14,7 +14,7 @@ const A = (props) => {
 	// 	useParams()
 	// );
 	return (
-		<div className="flex flex-row">
+		<div className="flex flex-row ">
 			<div className="flex justify-center items-center flex-col max-w-5xl">
 				<Link to="/a/a1">
 					<Button>A1</Button>

@@ -1,9 +1,11 @@
 import './App.css';
 import {Button} from 'antd';
-import {Link,HashRouter} from 'react-router-dom';
+import {NavLink,HashRouter} from 'react-router-dom';
 // router5.x版本
 // import RouterView from './router/routerFive';
 // import routes from './router/routerFive/routes';
+//router6.x版本
+import RouterView from './router/routerSix';
 // 普通匹配路由写法
 // import {Switch,Route,Redirect} from 'react-router-dom';
 // import BasicGrammar from './views/ReactBasicGrammar';
@@ -15,14 +17,15 @@ function App() {
   return (
     <div className='App'>
       <HashRouter>
-          <div className='nav'>
-            <Link to='/'><Button>基础语法</Button></Link>
-            <Link to='/compdevbasic'><Button>组件化开发基础</Button></Link>
-            <Link to='/hooks'><Button>ReactHooks</Button></Link>
-            {/*<Link to='/user'><Button>UserRouterFive</Button></Link>*/}
-            <Link to='/user'><Button>UserRouterSix</Button></Link>
-          </div>
-          {/*<div className="routerFive">
+        <div className='nav'>
+          <NavLink to='/'><Button>基础语法</Button></NavLink>
+          <NavLink to='/compdevbasic'><Button>组件化开发基础</Button></NavLink>
+          <NavLink to='/hooks'><Button>ReactHooks</Button></NavLink>
+          {/*<NavLink to='/user'><Button>UserRouterFive</Button></NavLink>*/}
+          <NavLink to='/user'><Button>UserRouterSix</Button></NavLink>
+        </div>
+        <RouterView></RouterView>
+        {/*<div className="routerFive">
             <div className="content">
               我们对routes进行了统一的处理
               <RouterView routes={routes}></RouterView>

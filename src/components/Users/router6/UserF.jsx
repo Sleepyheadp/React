@@ -1,7 +1,8 @@
-export const userF = () => {
+const UserF = () => {
   return (
     <>
       userF
     </>
   )
 }
+export default UserF;

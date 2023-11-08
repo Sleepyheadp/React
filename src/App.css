@@ -1,0 +1,16 @@
+.active{
+  width: max-content;
+  height: 32px;
+  background: lightcoral;
+  display: inline-block;
+  border-radius: 6px;
+}
+button{
+  font-size: 14px;
+  height: 32px;
+  padding: 4px 15px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid #ccc;
+  cursor:pointer;
+}

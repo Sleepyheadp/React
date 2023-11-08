@@ -6,9 +6,9 @@ const UserRouterSix = () => {
   return (
     <div className='userBox router6'>
         <div className="userNav">
-          <NavLink to='/user/userD'><Button>userD</Button></NavLink>
-          <NavLink to='/user/userE'><Button>userE</Button></NavLink>
-          <NavLink to='/user/userF'><Button>userF</Button></NavLink>
+          <NavLink to='/user/userD'><button>userD</button></NavLink>
+          <NavLink to='/user/userE'><button>userE</button></NavLink>
+          <NavLink to='/user/userF'><button>userF</button></NavLink>
         </div>
         <div className="userContent">
           <Outlet/>

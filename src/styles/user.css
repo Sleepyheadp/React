@@ -17,3 +17,16 @@
 .userC{
     background: lightgreen;
 }
+.active{
+    width: max-content;
+    background: lightcoral;
+}
+button{
+    font-size: 14px;
+    height: 32px;
+    padding: 4px 15px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}

@@ -1,6 +1,6 @@
 import {lazy} from 'react'
 import {Navigate} from 'react-router-dom'
-const routes= [
+const routes = [
   {
     path: '/',
     component: ()=><Navigate to='/basicgrammer' />,
@@ -45,6 +45,11 @@ const routes= [
     path: '/hooks',
     name:'hooks',
     component:lazy(()=>import('../../views/ReactHooks')),
+  },
+  {
+    path: '/redux',
+    name:'redux',
+    component:lazy(()=>import('../../views/ReactRedux')),
   },
   {
     path:'*',

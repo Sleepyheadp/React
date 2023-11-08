@@ -18,27 +18,28 @@ function App() {
     <div className='App'>
       <HashRouter>
         <div className='nav'>
-          <NavLink to='/'><Button>基础语法</Button></NavLink>
-          <NavLink to='/compdevbasic'><Button>组件化开发基础</Button></NavLink>
-          <NavLink to='/hooks'><Button>ReactHooks</Button></NavLink>
-          {/*<NavLink to='/user'><Button>UserRouterFive</Button></NavLink>*/}
-          <NavLink to='/user'><Button>UserRouterSix</Button></NavLink>
+          <NavLink to='/basicgrammar'><button>基础语法</button></NavLink>
+          <NavLink to='/compdevbasic'><button>组件化开发基础</button></NavLink>
+          <NavLink to='/hooks'><button>ReactHooks</button></NavLink>
+          {/*<NavLink to='/user'><button>UserRouterFive</button></NavLink>*/}
+          <NavLink to='/user'><button>UserRouterSix</button></NavLink>
+          <NavLink to='/redux'><button>react-redux</button></NavLink> 
         </div>
         <RouterView></RouterView>
-        {/*<div className="routerFive">
+        <div className="routerFive">
             <div className="content">
-              我们对routes进行了统一的处理
-              <RouterView routes={routes}></RouterView>
-               普通写法:这种写法连路由表（router/routes）都不需要配置，直接在这里匹配
-               <Switch>
+              {/* 我们对routes进行了统一的处理 */}
+              {/* <RouterView routes={routes}></RouterView> */}
+              {/* 普通写法:这种写法连路由表（router/routes）都不需要配置，直接在这里匹配 */}
+              {/* <Switch>
                 1、精准匹配到根目录后自动跳转到basicgrammer
-                 /和*的区别：/是精确匹配，*是模糊匹配， to='/'是匹配根目录，to='*'是匹配所有
+                /和*的区别：/是精确匹配，*是模糊匹配， to='/'是匹配根目录，to='*'是匹配所有
                 <Redirect exact from='/' to='/basicgrammer'></Redirect>
                 2、匹配页面路由
                 <Route path='/basicgrammer' exact component={BasicGrammar}></Route>
                 <Route path='/compdevbasic' component={CompDevBasic}></Route>
                 <Route path='/hooks' component={Hooks}></Route>
-                 render是一个函数，返回值是一个组件
+                render是一个函数，返回值是一个组件
                 <Route path='/user' render={(
                     ()=>{
                         // 当路由地址匹配后，先把render函数执行，返回值就是我们需要渲染的内容
@@ -51,11 +52,11 @@ function App() {
                     }
                 )} />
                 3、匹配404页面
-                  404页面的匹配必须放在最后，因为匹配到404页面后，就不会再往下匹配了
+                404页面的匹配必须放在最后，因为匹配到404页面后，就不会再往下匹配了
                 <Redirect to='/notfound' />
-              </Switch>
+              </Switch> */}
             </div>
-          </div>*/}
+          </div>
       </HashRouter>
     </div>
   );

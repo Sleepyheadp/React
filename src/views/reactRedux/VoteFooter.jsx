@@ -1,24 +1,16 @@
-import React,{useContext} from 'react'
-import ThemeContext from '../../utils/ThemeContext'
-export const VoteFooter = () => {
-  const {store} = useContext(ThemeContext)
-  let {supNum,oppNum} = store.getState()
-  return (
-    <>
-      <button 
-        onClick={()=>{
-          store.dispatch({
-            type: 'VOTE__SUP',
-          })
-        }}
-      >支持</button>
-      <button
-        onClick={()=>{
-          store.dispatch({
-            type: 'VOTE__OPP',
-          })
-        }}
-      >反对</button>
-    </>
-  )
-}
+import React from "react";
+import { Button } from "antd";
+import action from "../../store/actions";
+import { connect } from "react-redux";
+const VoteFooter = (props) => {
+	let { support, oppose } = props;
+	return (
+		<div className="footer">
+			<Button onClick={support}>支持</Button>
+			<Button type="primary" danger onClick={oppose}>
+				反对
+			</Button>
+		</div>
+	);
+};
+export default connect(null, action.vote)(VoteFooter);

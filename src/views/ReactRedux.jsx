@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Vote from "./reactRedux/Vote";
 import store from "../store";
 import { Provider } from "react-redux";
@@ -8,7 +8,6 @@ const ReactRedux = () => {
 	return (
 		<>
 			<ConfigProvider locale={zhCN}>
-				<div>ReduxDemo</div>
 				<Provider store={store}>
 					<Vote></Vote>
 				</Provider>

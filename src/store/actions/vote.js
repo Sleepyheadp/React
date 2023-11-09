@@ -32,7 +32,6 @@ const vote = {
 		return {
 			type: TYPES.VOTE_OPP,
 			payload: delay().then((res) => {
-				console.log("res", res);
 				return {
 					// 这里可以放置你想在Promise解析完成后传递的数据
 					res,

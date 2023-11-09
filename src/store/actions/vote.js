@@ -1,5 +1,5 @@
 // 因为页面中导出多个，*代表导入全部，as是起别名
-import * as TYPES from "../actionTypes";
+import * as TYPES from "../action-types";
 // 异步操作延迟两秒执行
 const delay = (interval = 2000) => {
 	return new Promise((resolve) => {

@@ -1,5 +1,5 @@
 import _ from "../../utils/utils";
-import * as TYPES from "../actionTypes";
+import * as TYPES from "../action-types";
 const initial = {
 	supNum: 1,
 	oppNum: 2,

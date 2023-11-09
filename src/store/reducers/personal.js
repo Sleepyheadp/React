@@ -1,6 +1,6 @@
 /* personal版块下的reducer */
 import _ from "../../utils/utils";
-import * as TYPES from "../actionTypes";
+import * as TYPES from "../action-types";
 
 const initial = {
 	num: 100,

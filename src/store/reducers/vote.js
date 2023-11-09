@@ -3,9 +3,10 @@ import * as TYPES from "../actionTypes";
 const initial = {
 	supNum: 1,
 	oppNum: 2,
+	abandonNum: 0,
 	num: 0,
 };
-export default function vote(state = initial, action) {
+const vote = (state = initial, action) => {
 	// 拷贝一份state，不要直接修改原state
 	state = _.clone(true, state);
 	// 根据action的type值，修改state
@@ -16,7 +17,11 @@ export default function vote(state = initial, action) {
 		case TYPES.VOTE_OPP:
 			state.oppNum++;
 			break;
+		case TYPES.VOTE_ABANDON:
+			state.abandonNum++;
+			break;
 		default:
 	}
 	return state;
-}
+};
+export default vote;

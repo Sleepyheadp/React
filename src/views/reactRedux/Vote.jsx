@@ -5,10 +5,10 @@ import VoteFooter from "./VoteFooter";
 // import ThemeContext from '../../utils/ThemeContext'
 import { connect } from "react-redux";
 const Vote = (props) => {
-	let { supNum, oppNum } = props;
+	let { supNum, oppNum, abandonNum } = props;
 	return (
 		<>
-			<div>人数总和:{supNum + oppNum}</div>
+			<div>人数总和:{supNum + oppNum + abandonNum}</div>
 			<VoteMain></VoteMain>
 			<VoteFooter></VoteFooter>
 		</>

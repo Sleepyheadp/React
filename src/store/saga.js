@@ -1,16 +1,16 @@
 import {
-	take,
 	takeLatest,
-	throttle,
-	debounce,
-	call,
-	apply,
-	fork,
 	delay,
 	put,
-	select,
-	all,
-	cancel,
+	// take,
+	// throttle,
+	// debounce,
+	// call,
+	// apply,
+	// fork,
+	// select,
+	// all,
+	// cancel,
 } from "redux-saga/effects";
 import * as TYPES from "./action-types";
 

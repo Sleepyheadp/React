@@ -33,6 +33,9 @@ function App() {
 					<NavLink to="/redux">
 						<button>react-redux</button>
 					</NavLink>
+					<NavLink to="/mobx">
+						<button>mobx</button>
+					</NavLink>
 				</div>
 				<RouterView></RouterView>
 				<div className="routerFive">

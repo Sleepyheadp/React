@@ -1,5 +1,5 @@
 import React from "react";
-import { observable, action, autorun, computed } from "mobx";
+import { observable, action, autorun, computed, reaction } from "mobx";
 import { observer } from "mobx-react";
 class Store {
 	// 公共状态:observable把数据变成可观察的
@@ -21,12 +21,23 @@ class Store {
 }
 let store = new Store();
 
-autorun(() => {
+/* autorun(() => {
 	// 首先在页面加载后会立即执行一次，然后每次数据「数据需要是可观察的」变化都会执行
 	console.log(
 		`autorun;${store.count}+${store.num}=${store.sum};${store.obj.age}`
 	);
-});
+}); */
+
+// reaction和autorun类似，但是autorun是无法指定监听的数据的，而reaction可以
+// reaction默认是不会执行的，当监听的数据发生变化时才会执行
+reaction(
+	() => [store.sum, store.obj.age], // 监听的数据
+	() => {
+		console.log(
+			`reaction;${store.count}+${store.num}=${store.sum};${store.obj.age}`
+		);
+	}
+);
 
 const Mbox5 = observer(() => {
 	return (

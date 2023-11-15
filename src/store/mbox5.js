@@ -34,6 +34,7 @@ class Store {
 	@action.bound async changeCount() {
 		// this.count++;
 		// this.obj.age++;
+		console.log("点击了5");
 		let res = 0;
 		try {
 			res = await getData();
@@ -57,7 +58,7 @@ autorun(() => {
 // reaction和autorun类似，但是autorun是无法指定监听的数据的，而reaction可以
 // reaction默认是不会执行的，当监听的数据发生变化时才会执行
 reaction(
-	() => [store.sum, store.obj.age], // 监听的数据
+	() => [store.count, store.obj.age], // 监听的数据
 	() => {
 		console.log(
 			`reaction;${store.count}+${store.num}=${store.sum};${store.obj.age}`

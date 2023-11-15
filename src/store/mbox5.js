@@ -14,6 +14,14 @@ configure({
 	// 强制使用action修改数据，不允许直接修改数据「不允许基于实例修改」
 	enforceActions: "observed",
 });
+/* 模拟异步获取数据 */
+const getData = () => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve(100);
+		}, 1000);
+	});
+};
 class Store {
 	// 公共状态:observable把数据变成可观察的
 	@observable count = 1;
@@ -23,9 +31,16 @@ class Store {
 		age: 18,
 	};
 	// 解决方法四：使用bound（确保函数中的this都是Store的实例）
-	@action.bound changeCount() {
+	@action.bound async changeCount() {
 		// this.count++;
-		this.obj.age++;
+		// this.obj.age++;
+		let res = 0;
+		try {
+			res = await getData();
+		} catch (_) {}
+		runInAction(() => {
+			this.count += res;
+		});
 	}
 	// computed：创建一个具备计算缓存的计算属性
 	@computed get sum() {
@@ -37,9 +52,7 @@ let store = new Store();
 
 autorun(() => {
 	// 首先在页面加载后会立即执行一次，然后每次数据「数据需要是可观察的」变化都会执行
-	console.log(
-		`autorun;${store.count}+${store.num}=${store.sum};${store.obj.age}`
-	);
+	// console.log(`autorun;${store.count}+${store.num}=${store.sum};${store.obj.age}`);
 });
 // reaction和autorun类似，但是autorun是无法指定监听的数据的，而reaction可以
 // reaction默认是不会执行的，当监听的数据发生变化时才会执行
@@ -64,9 +77,9 @@ setTimeout(() => {
 	// let func = store.changeCount.bind(store);
 	// func();
 	/* 解决方法三：使用runInAction「意思就是使得直接修改值的方法像action修改值效果一样」 */
-	runInAction(() => {
-		store.count += 1;
-	});
+	// runInAction(() => {
+	// 	store.count += 1;
+	// });
 	/* 开启严格模式下，不能直接修改值，需要通过action，否则会报错 */
 	// store.count += 1;
 }, 1000);

@@ -1,6 +1,19 @@
 import React from "react";
-import { observable, action, autorun, computed, reaction } from "mobx";
+import {
+	observable, // 把数据变成可观察的
+	action, // 修改数据
+	computed, // 计算属性
+	autorun, // 监听数据变化「默认执行一次」
+	reaction, // 监听数据变化「默认不执行，可以监听具体的数据」
+	configure, // 全局配置
+	runInAction, // 直接修改值
+} from "mobx";
 import { observer } from "mobx-react";
+// 全局配置，开启严格模式
+configure({
+	// 强制使用action修改数据，不允许直接修改数据「不允许基于实例修改」
+	enforceActions: "observed",
+});
 class Store {
 	// 公共状态:observable把数据变成可观察的
 	@observable count = 1;
@@ -9,7 +22,7 @@ class Store {
 		name: "张三",
 		age: 18,
 	};
-	// 解决方法三：使用bound
+	// 解决方法四：使用bound（确保函数中的this都是Store的实例）
 	@action.bound changeCount() {
 		// this.count++;
 		this.obj.age++;
@@ -28,6 +41,16 @@ autorun(() => {
 		`autorun;${store.count}+${store.num}=${store.sum};${store.obj.age}`
 	);
 });
+// reaction和autorun类似，但是autorun是无法指定监听的数据的，而reaction可以
+// reaction默认是不会执行的，当监听的数据发生变化时才会执行
+reaction(
+	() => [store.sum, store.obj.age], // 监听的数据
+	() => {
+		console.log(
+			`reaction;${store.count}+${store.num}=${store.sum};${store.obj.age}`
+		);
+	}
+);
 
 //定时器
 setTimeout(() => {
@@ -37,21 +60,16 @@ setTimeout(() => {
 	func(); */
 	// 解决方法一：使用箭头函数
 	// store.changeCount();
-	// 解决方法二：使用runInAction
-	let func = store.changeCount.bind(store);
-	func();
+	// 解决方法二：使用bind（确保函数中的this都是Store的实例）
+	// let func = store.changeCount.bind(store);
+	// func();
+	/* 解决方法三：使用runInAction「意思就是使得直接修改值的方法像action修改值效果一样」 */
+	runInAction(() => {
+		store.count += 1;
+	});
+	/* 开启严格模式下，不能直接修改值，需要通过action，否则会报错 */
+	// store.count += 1;
 }, 1000);
-
-// reaction和autorun类似，但是autorun是无法指定监听的数据的，而reaction可以
-// reaction默认是不会执行的，当监听的数据发生变化时才会执行
-/* reaction(
-	() => [store.sum, store.obj.age], // 监听的数据
-	() => {
-		console.log(
-			`reaction;${store.count}+${store.num}=${store.sum};${store.obj.age}`
-		);
-	}
-); */
 
 const Mbox5 = observer(() => {
 	return (

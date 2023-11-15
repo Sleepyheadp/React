@@ -6933,14 +6933,14 @@ mobx-react-lite@^4.0.4:
 
 mobx-react@^9.1.0:
   version "9.1.0"
-  resolved "https://registry.npmmirror.com/mobx-react/-/mobx-react-9.1.0.tgz"
+  resolved "https://registry.npmmirror.com/mobx-react/-/mobx-react-9.1.0.tgz#5e54919ca27ffad5f2c0d835148a1f681cebdbc1"
   integrity sha512-DeDRTYw4AlgHw8xEXtiZdKKEnp+c5/jeUgTbTQXEqnAzfkrgYRWP3p3Nv3Whc2CEcM/mDycbDWGjxKokQdlffg==
   dependencies:
     mobx-react-lite "^4.0.4"
 
 mobx@^6.11.0:
   version "6.11.0"
-  resolved "https://registry.npmmirror.com/mobx/-/mobx-6.11.0.tgz"
+  resolved "https://registry.npmmirror.com/mobx/-/mobx-6.11.0.tgz#8a748b18c140892d1d0f28b71315f1f639180006"
   integrity sha512-qngYCmr0WJiFRSAtYe82DB7SbzvbhehkJjONs8ydynUwoazzUQHZdAlaJqUfks5j4HarhWsZrMRhV7HtSO9HOQ==
 
 ms@2.0.0:

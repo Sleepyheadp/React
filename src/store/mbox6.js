@@ -3,7 +3,7 @@ import {
 	autorun,
 	reaction,
 	runInAction,
-	computed,
+	// computed,
 } from "mobx";
 import { observer, inject } from "mobx-react";
 
@@ -28,11 +28,12 @@ class Store {
 		this.root = root;
 		makeAutoObservable(this);
 	}
-
-	@computed get sum() {
+	// makeAutoObservable：所有以get开头的方法都是计算属性computed
+	get sum() {
 		console.log("sum方法执行了");
 		return this.count + this.num;
 	}
+	// makeAutoObservable：直接写方法名的，都是action，默认通过@action.bound修饰
 	async changeCount() {
 		let res = 0;
 		try {
@@ -62,12 +63,14 @@ reaction(
 );
 
 const Mbox6 = observer((props) => {
-	let { task, personal } = props;
-	console.log("task", task, "personal", personal);
+	// let { task, personal } = props;
+	// console.log("task", task, "personal", personal);
 	return (
 		<div>
 			<h1>mobx6</h1>
 			<p>count:{store.count}</p>
+			<p>num:{store.num}</p>
+			<p>sum:{store.sum}</p>
 			<p>age:{store.obj.age}</p>
 			<button onClick={() => store.changeCount()}>点击</button>
 		</div>

@@ -11,7 +11,7 @@ import {
 	Tag,
 	message,
 } from "antd";
-import { getTaskList, addTask, removeTask, completeTask } from "../api";
+import { addTask, removeTask, completeTask } from "../api";
 import { observer, inject } from "mobx-react";
 
 /* 对日期处理的方法 */
@@ -105,7 +105,7 @@ const Task = function Task(props) {
 				setTableLoading(false);
 			}
 		})();
-	}, []);
+	}, [task, task.taskList]);
 	useEffect(() => {
 		let { taskList } = task;
 		if (!taskList) taskList = [];
@@ -115,7 +115,7 @@ const Task = function Task(props) {
 			});
 		}
 		setTableData(taskList);
-	}, [selectedIndex, task.taskList]);
+	}, [task, selectedIndex, task.taskList]);
 
 	/* 关于Modal和表单的处理 */
 	const closeModal = () => {

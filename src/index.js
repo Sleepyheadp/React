@@ -12,12 +12,12 @@ import store from "./store/mobx";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<ConfigProvider locale={zhCN}>
-		<React.StrictMode>
-			{/* 基于Provider把各个版块Store的实例，都放在上下文中 */}
-			<Provider {...store} /*=> task={store.task} personal={store.personal} */>
-				<App />
-			</Provider>
-		</React.StrictMode>
+		{/* <React.StrictMode> */}
+		{/* 基于Provider把各个版块Store的实例，都放在上下文中 */}
+		<Provider {...store} /*=> task={store.task} personal={store.personal} */>
+			<App />
+		</Provider>
+		{/* </React.StrictMode> */}
 	</ConfigProvider>
 );
 

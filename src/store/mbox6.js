@@ -5,7 +5,7 @@ import {
 	runInAction,
 	computed,
 } from "mobx";
-import { observer } from "mobx-react";
+import { observer, inject } from "mobx-react";
 
 /* 模拟异步获取数据 */
 const getData = () => {
@@ -61,7 +61,9 @@ reaction(
 	}
 );
 
-const Mbox6 = observer(() => {
+const Mbox6 = observer((props) => {
+	let { task, personal } = props;
+	console.log("task", task, "personal", personal);
 	return (
 		<div>
 			<h1>mobx6</h1>
@@ -71,4 +73,4 @@ const Mbox6 = observer(() => {
 		</div>
 	);
 });
-export default Mbox6;
+export default inject("task", "personal")(Mbox6);

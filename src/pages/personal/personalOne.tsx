@@ -5,13 +5,13 @@ export default function personalOne() {
   const navigate = useNavigate()
   const handle = ()=>{
     // query传参
-    navigate('/personal/two?id=1&name=capoo1')
+    /*navigate('/personal/two?id=1&name=capoo1')*/
     // search传参
-    navigate({
+   /* navigate({
 			pathname:'/personal/two',
 			// search:'?name=capoo&age=18'
 			search: qs.stringify({ id:2,name: "capoo2" }),
-		})
+		})*/
     // state传参(隐式传参)
     navigate('/personal/two',{
       replace:true,
@@ -22,17 +22,17 @@ export default function personalOne() {
     })
 
     // history.push传参
-    history.push({
+    /*history.push({
       pathname:'/personal/two',
       query:{
         id:4,
         name:'capoo4'
       }
-    })
+    })*/
   }
   return (
     <div>
-      personalOne
+      <p>personalOne</p>
       <button onClick={handle}>跳转到two</button>
     </div>
   )

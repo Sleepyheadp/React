@@ -1,6 +1,6 @@
 const routes = [
-  { 
-    path: "/", 
+  {
+    path: "/",
     component: "index",
     title:'首页',
   },

@@ -11,5 +11,6 @@ export { ApplyPluginsType, PluginManager } from '/Users/capoo/Documents/web/proj
 export { history, createHistory } from './core/history';
 export { terminal } from './core/terminal';
 export { TestBrowser } from './testBrowser';
+export const useServerInsertedHTML: Function = () => {};
 // plugins
 // plugins types.d.ts

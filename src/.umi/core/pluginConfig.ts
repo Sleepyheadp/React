@@ -33,6 +33,9 @@ interface IConfigTypes {
     routes?: IConfigTypes['routes'];
     wrappers?: (Array<string> | undefined);
 } | { [x: string]: any }>;
+    routeLoader: {
+    moduleType: "esm" | "cjs";
+};
     reactRouter5Compat: boolean | {
 
 };
@@ -83,12 +86,13 @@ interface IConfigTypes {
     targets: { [x: string]: any };
     svgr: { [x: string]: any };
     svgo: { [x: string]: any } | boolean;
+    stylusLoader: { [x: string]: any };
     styleLoader: { [x: string]: any };
     srcTranspilerOptions: {
     esbuild?: ({ [x: string]: any } | undefined);
     swc?: ({ [x: string]: any } | undefined);
 };
-    srcTranspiler: "babel" | "esbuild" | "swc" | "none";
+    srcTranspiler: "babel" | "esbuild" | "swc";
     sassLoader: { [x: string]: any };
     runtimePublicPath: {
 
@@ -153,6 +157,7 @@ interface IConfigTypes {
     failOnHint?: (boolean | undefined);
     patterns?: (Array<string> | undefined);
 };
+    cssPublicPath: string;
     cssMinifierOptions: { [x: string]: any };
     cssMinifier: "cssnano" | "esbuild" | "parcelCSS" | "none";
     cssLoaderModules: { [x: string]: any };
@@ -176,6 +181,7 @@ interface IConfigTypes {
 };
     exportStatic: {
     extraRoutePaths?: (((...args: any[]) => unknown) | Array<string> | undefined);
+    ignorePreRenderError?: (boolean | undefined);
 };
     favicons: Array<string>;
     helmet: boolean;

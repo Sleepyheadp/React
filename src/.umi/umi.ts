@@ -4,7 +4,7 @@
 import './core/polyfill';
 import '/Users/capoo/React/src/global.less';
 import '/Users/capoo/React/src/global.tsx';
-import { renderClient } from '/Users/capoo/React/node_modules/@umijs/renderer-react';
+import { renderClient } from '/Users/capoo/React/node_modules/.pnpm/@umijs+renderer-react@4.0.89_react-dom@18.1.0_react@18.1.0/node_modules/@umijs/renderer-react';
 import { getRoutes } from './core/route';
 import { createPluginManager } from './core/plugin';
 import { createHistory } from './core/history';
@@ -75,5 +75,5 @@ async function render() {
 render();
 
 window.g_umi = {
-  version: '4.0.88',
+  version: '4.0.89',
 };

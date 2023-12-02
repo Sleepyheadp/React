@@ -27,7 +27,7 @@
         "src/.umi/*"
       ],
       "umi": [
-        "/Users/capoo/React/node_modules/umi"
+        "/Users/capoo/React/node_modules/.pnpm/umi@4.0.89_@babel+core@7.23.5_@types+react@18.2.40_eslint@8.55.0_prettier@3.1.0_react-dom@18._uas7jqhmuwluwur47hr3pxvmmi/node_modules/umi"
       ],
       "umi/typings": [
         "src/.umi/typings"

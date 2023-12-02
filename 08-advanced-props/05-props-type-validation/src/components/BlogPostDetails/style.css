@@ -1,0 +1,14 @@
+.blogPostDetails h2 {
+  margin-bottom: 12px;
+}
+
+.likes {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.type {
+  color: #c653ff;
+}

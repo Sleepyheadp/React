@@ -1,0 +1,9 @@
+.menu {
+  display: grid;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+.menu a {
+  color: initial;
+}

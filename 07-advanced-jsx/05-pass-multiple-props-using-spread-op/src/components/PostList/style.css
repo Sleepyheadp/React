@@ -1,0 +1,27 @@
+.post {
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  column-gap: 20px;
+}
+
+.postContent {
+  min-height: 70px;
+}
+
+.postMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.postAuthor {
+  font-weight: 600;
+}
+.postDate {
+  color: #666666;
+}

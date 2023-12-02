@@ -1,0 +1,12 @@
+{
+  "name": "react-complete-guide-code",
+  "version": "1.0.0",
+  "description": "React 完全指南课程源代码",
+  "main": "index.js",
+  "author": "Xuqian Zhang <zxuqian@gmail.com>",
+  "license": "Private",
+  "private": true,
+  "workspaces": [
+    "./**"
+  ]
+}

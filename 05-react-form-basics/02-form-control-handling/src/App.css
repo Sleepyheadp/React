@@ -1,0 +1,7 @@
+.container {
+  width: 400px;
+  margin: 0 auto;
+  padding-top: 24px;
+  display: grid;
+  row-gap: 24px;
+}

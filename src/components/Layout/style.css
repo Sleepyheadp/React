@@ -1,0 +1,7 @@
+nav {
+	display: grid;
+	align-items: start;
+	justify-items: center;
+	border-right: 1px solid #ffffff;
+	background-color: hsl(0deg, 0%, 98%);
+}
